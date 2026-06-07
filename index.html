@@ -2226,34 +2226,83 @@
       .pricing-cards { max-width: 100%; }
     }
 
+    /* ─── Popular card animated border trail ─── */
+    @media (prefers-reduced-motion: no-preference) {
+      .pricing-border-trail-wrap {
+        pointer-events: none;
+        position: absolute;
+        inset: -1.5px;
+        border-radius: 20px;
+        border: 1.5px solid transparent;
+        -webkit-mask-clip: padding-box, border-box;
+        mask-clip: padding-box, border-box;
+        -webkit-mask-composite: destination-in;
+        mask-composite: intersect;
+        -webkit-mask-image: linear-gradient(transparent, transparent), linear-gradient(#000, #000);
+        mask-image: linear-gradient(transparent, transparent), linear-gradient(#000, #000);
+      }
+
+      .pricing-border-trail {
+        position: absolute;
+        width: 100px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(255, 255, 255, 0.98) 0%,
+          rgba(210, 160, 255, 0.90) 25%,
+          rgba(160, 90, 255, 0.65) 50%,
+          rgba(115, 66, 226, 0.30) 70%,
+          transparent 100%
+        );
+        offset-path: rect(0 auto auto 0 round 20px);
+        animation: pricingBorderTrail 4s linear infinite;
+      }
+
+      @keyframes pricingBorderTrail {
+        from { offset-distance: 0%; }
+        to   { offset-distance: 100%; }
+      }
+    }
+
     /* ==========================================
-       TESTIMONIALS SECTION
+       TESTIMONIALS SECTION — Scrolling Columns
     ========================================== */
     .testimonials-section {
-      background: #fff;
+      background: #F8F9FC;
       padding: clamp(72px, 10vw, 120px) 0;
-      border-top: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
     }
 
     .testimonials-container {
-      max-width: 1100px;
+      max-width: 1160px;
       margin: 0 auto;
       padding: 0 clamp(24px, 5vw, 60px);
     }
 
     .testimonials-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      margin-bottom: clamp(40px, 5vw, 56px);
+      max-width: 540px;
+      margin: 0 auto clamp(48px, 6vw, 72px);
     }
 
     .testimonials-eyebrow {
-      display: block;
+      display: inline-block;
+      border: 1px solid rgba(25,40,55,0.18);
+      padding: 4px 16px;
+      border-radius: 100px;
       font-family: var(--font-body);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-3);
-      letter-spacing: 0.02em;
-      margin-bottom: 14px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      background: rgba(25,40,55,0.04);
+      margin-bottom: 20px;
     }
 
     .testimonials-h2 {
@@ -2262,48 +2311,92 @@
       line-height: 1.06;
       letter-spacing: -0.022em;
       color: #192837;
+      margin-bottom: 16px;
     }
 
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+    .testimonials-sub {
+      font-family: var(--font-body);
+      font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+      color: var(--text-2);
+      line-height: 1.65;
+      max-width: 380px;
     }
 
-    .testi-card {
-      background: #F4F5F9;
-      border-radius: 20px;
-      padding: 28px 24px 24px;
+    /* Columns wrapper with vertical gradient fade mask */
+    .testi-columns {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      max-height: 740px;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    }
+
+    .testi-col {
+      flex-shrink: 0;
+      width: 300px;
+    }
+
+    .testi-col-2 { display: none; }
+    .testi-col-3 { display: none; }
+
+    @media (min-width: 768px) { .testi-col-2 { display: block; } }
+    @media (min-width: 1024px) { .testi-col-3 { display: block; } }
+
+    /* Scrolling track — contains cards doubled for seamless loop */
+    .testi-track {
       display: flex;
       flex-direction: column;
+      gap: 20px;
+      padding-bottom: 20px;
+      list-style: none;
+      will-change: transform;
     }
 
-    .testi-quote-mark {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 54px;
-      line-height: 0.8;
-      color: #C8CEEA;
-      font-weight: 900;
-      letter-spacing: -3px;
-      margin-bottom: 18px;
-      display: block;
+    @media (prefers-reduced-motion: no-preference) {
+      .testi-track {
+        animation: testiScroll var(--testi-dur, 15s) linear infinite;
+      }
+      .testi-columns:hover .testi-track {
+        animation-play-state: paused;
+      }
+    }
+
+    @keyframes testiScroll {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-50%); }
+    }
+
+    /* Individual testimonial card */
+    .testi-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 28px;
+      border: 1px solid rgba(25,40,55,0.07);
+      box-shadow: 0 4px 16px rgba(25,40,55,0.06), 0 1px 4px rgba(25,40,55,0.03);
+      cursor: default;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease;
+      width: 100%;
+    }
+
+    .testi-card:hover {
+      transform: scale(1.03) translateY(-6px);
+      box-shadow: 0 20px 48px rgba(25,40,55,0.12), 0 4px 12px rgba(25,40,55,0.07);
     }
 
     .testi-quote {
       font-family: var(--font-body);
-      font-size: clamp(0.9rem, 1.5vw, 1.05rem);
-      line-height: 1.65;
-      color: #192837;
-      flex: 1;
-      margin-bottom: 24px;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #4A5273;
+      margin-bottom: 20px;
     }
 
     .testi-author {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(25,40,55,0.06);
     }
 
     .testi-avatar {
@@ -2311,10 +2404,9 @@
       height: 40px;
       border-radius: 50%;
       flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
+      border: 2px solid rgba(25,40,55,0.06);
+      object-fit: cover;
     }
 
     .testi-author-info {
@@ -2335,48 +2427,6 @@
       font-size: 12px;
       color: var(--text-3);
       line-height: 1.4;
-    }
-
-    .testimonials-dots {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
-      margin-top: 36px;
-    }
-
-    .testi-dot {
-      height: 8px;
-      border-radius: 4px;
-      background: rgba(25,40,55,0.15);
-      transition: background var(--t-fast), width var(--t-fast);
-    }
-
-    .testi-dot-active {
-      width: 22px;
-      background: #192837;
-    }
-
-    .testi-dot-inactive {
-      width: 8px;
-    }
-
-    @media (max-width: 900px) {
-      .testimonials-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-      }
-      .testi-card:last-child {
-        grid-column: 1 / -1;
-        max-width: 480px;
-        margin: 0 auto;
-        width: 100%;
-      }
-    }
-
-    @media (max-width: 580px) {
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .testi-card:last-child { grid-column: auto; max-width: 100%; }
     }
 
     /* ==========================================
@@ -3887,6 +3937,9 @@
 
           <!-- Pro (Most Popular) -->
           <div class="pricing-card pricing-card-popular">
+            <div class="pricing-border-trail-wrap" aria-hidden="true">
+              <div class="pricing-border-trail"></div>
+            </div>
             <span class="pricing-popular-badge">Most Popular</span>
             <div class="pricing-price-row">
               <span class="pricing-amount" data-monthly="$4" data-yearly="$3">$4</span>
@@ -3964,65 +4017,213 @@
       <div class="testimonials-container">
 
         <div class="testimonials-top">
-          <span class="testimonials-eyebrow">Testimonial</span>
-          <h2 class="testimonials-h2" id="testimonials-heading">Transformative Client Experiences</h2>
+          <span class="testimonials-eyebrow">Testimonials</span>
+          <h2 class="testimonials-h2" id="testimonials-heading">What our users say</h2>
+          <p class="testimonials-sub">Discover how thousands of people keep their digital lives secure with Snaarplock.</p>
         </div>
 
-        <div class="testimonials-grid">
+        <div class="testi-columns" role="region" aria-label="Scrolling Testimonials">
 
-          <!-- Card 1 -->
-          <article class="testi-card">
-            <span class="testi-quote-mark" aria-hidden="true">&ldquo;</span>
-            <p class="testi-quote">Impressed by the professionalism and attention to detail.</p>
-            <div class="testi-author">
-              <div class="testi-avatar" aria-hidden="true" style="background:#DDE8FF;">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle cx="12" cy="8" r="4" fill="#4A6FA5"/>
-                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#4A6FA5"/>
-                </svg>
-              </div>
-              <div class="testi-author-info">
-                <span class="testi-name">Guy Hawkins</span>
-                <span class="testi-handle">@guyhawkins</span>
-              </div>
-            </div>
-          </article>
+          <!-- Column 1: always visible -->
+          <div class="testi-col">
+            <ul class="testi-track" style="--testi-dur:15s">
+              <li class="testi-card">
+                <p class="testi-quote">Snaarplock completely transformed how I manage passwords. One master password and I'm done — no more sticky notes or forgotten credentials.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=80&h=80" alt="Briana Patton" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Briana Patton</span>
+                    <span class="testi-handle">Operations Manager</span>
+                  </div>
+                </div>
+              </li>
+              <li class="testi-card">
+                <p class="testi-quote">Implementation was smooth and quick. The user-friendly interface made onboarding my entire team completely effortless.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=80&h=80" alt="Bilal Ahmed" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Bilal Ahmed</span>
+                    <span class="testi-handle">IT Manager</span>
+                  </div>
+                </div>
+              </li>
+              <li class="testi-card">
+                <p class="testi-quote">The support team is exceptional — guided us through setup and continues to provide outstanding assistance whenever we need it.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=80&h=80" alt="Saman Malik" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Saman Malik</span>
+                    <span class="testi-handle">Customer Support Lead</span>
+                  </div>
+                </div>
+              </li>
+              <!-- Duplicate set for seamless infinite loop -->
+              <li class="testi-card" aria-hidden="true">
+                <p class="testi-quote">Snaarplock completely transformed how I manage passwords. One master password and I'm done — no more sticky notes or forgotten credentials.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Briana Patton</span>
+                    <span class="testi-handle">Operations Manager</span>
+                  </div>
+                </div>
+              </li>
+              <li class="testi-card" aria-hidden="true">
+                <p class="testi-quote">Implementation was smooth and quick. The user-friendly interface made onboarding my entire team completely effortless.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Bilal Ahmed</span>
+                    <span class="testi-handle">IT Manager</span>
+                  </div>
+                </div>
+              </li>
+              <li class="testi-card" aria-hidden="true">
+                <p class="testi-quote">The support team is exceptional — guided us through setup and continues to provide outstanding assistance whenever we need it.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Saman Malik</span>
+                    <span class="testi-handle">Customer Support Lead</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
 
-          <!-- Card 2 -->
-          <article class="testi-card">
-            <span class="testi-quote-mark" aria-hidden="true">&ldquo;</span>
-            <p class="testi-quote">A seamless experience from start to finish. Highly recommend!</p>
-            <div class="testi-author">
-              <div class="testi-avatar" aria-hidden="true" style="background:#FFE8D6;">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle cx="12" cy="8" r="4" fill="#A0522D"/>
-                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#A0522D"/>
-                </svg>
-              </div>
-              <div class="testi-author-info">
-                <span class="testi-name">Karla Lynn</span>
-                <span class="testi-handle">@karlalyn98</span>
-              </div>
-            </div>
-          </article>
+          <!-- Column 2: hidden on mobile -->
+          <div class="testi-col testi-col-2">
+            <ul class="testi-track" style="--testi-dur:19s">
+              <li class="testi-card">
+                <p class="testi-quote">Seamless integration enhanced our workflow dramatically. The intuitive interface means my team was productive from day one.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=80&h=80" alt="Omar Raza" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Omar Raza</span>
+                    <span class="testi-handle">CEO</span>
+                  </div>
+                </div>
+              </li>
+              <li class="testi-card">
+                <p class="testi-quote">Robust features and quick support have transformed our project workflow, making the whole team significantly more efficient.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=80&h=80" alt="Zainab Hussain" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Zainab Hussain</span>
+                    <span class="testi-handle">Project Manager</span>
+                  </div>
+                </div>
+              </li>
+              <li class="testi-card">
+                <p class="testi-quote">The smooth rollout exceeded every expectation. It streamlined our processes and measurably improved overall business performance.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=80&h=80" alt="Aliza Khan" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Aliza Khan</span>
+                    <span class="testi-handle">Business Analyst</span>
+                  </div>
+                </div>
+              </li>
+              <!-- Duplicate set -->
+              <li class="testi-card" aria-hidden="true">
+                <p class="testi-quote">Seamless integration enhanced our workflow dramatically. The intuitive interface means my team was productive from day one.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Omar Raza</span>
+                    <span class="testi-handle">CEO</span>
+                  </div>
+                </div>
+              </li>
+              <li class="testi-card" aria-hidden="true">
+                <p class="testi-quote">Robust features and quick support have transformed our project workflow, making the whole team significantly more efficient.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Zainab Hussain</span>
+                    <span class="testi-handle">Project Manager</span>
+                  </div>
+                </div>
+              </li>
+              <li class="testi-card" aria-hidden="true">
+                <p class="testi-quote">The smooth rollout exceeded every expectation. It streamlined our processes and measurably improved overall business performance.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Aliza Khan</span>
+                    <span class="testi-handle">Business Analyst</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
 
-          <!-- Card 3 -->
-          <article class="testi-card">
-            <span class="testi-quote-mark" aria-hidden="true">&ldquo;</span>
-            <p class="testi-quote">Reliable and trustworthy. Made my life so much easier!</p>
-            <div class="testi-author">
-              <div class="testi-avatar" aria-hidden="true" style="background:#E8F4E8;">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle cx="12" cy="8" r="4" fill="#3A7A3A"/>
-                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#3A7A3A"/>
-                </svg>
-              </div>
-              <div class="testi-author-info">
-                <span class="testi-name">Jane Cooper</span>
-                <span class="testi-handle">@janecooper</span>
-              </div>
-            </div>
-          </article>
+          <!-- Column 3: hidden on mobile & tablet -->
+          <div class="testi-col testi-col-3">
+            <ul class="testi-track" style="--testi-dur:17s">
+              <li class="testi-card">
+                <p class="testi-quote">Our security posture improved dramatically with a user-friendly design and overwhelmingly positive feedback from our customers.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=80&h=80" alt="Farhan Siddiqui" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Farhan Siddiqui</span>
+                    <span class="testi-handle">Marketing Director</span>
+                  </div>
+                </div>
+              </li>
+              <li class="testi-card">
+                <p class="testi-quote">They delivered a solution that truly exceeded expectations — understanding our needs and elevating our entire security operation.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=80&h=80" alt="Sana Sheikh" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Sana Sheikh</span>
+                    <span class="testi-handle">Sales Manager</span>
+                  </div>
+                </div>
+              </li>
+              <li class="testi-card">
+                <p class="testi-quote">Using Snaarplock, our team's productivity and online security improved significantly, delivering a measurable boost to our bottom line.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=80&h=80" alt="Hassan Ali" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Hassan Ali</span>
+                    <span class="testi-handle">E-commerce Manager</span>
+                  </div>
+                </div>
+              </li>
+              <!-- Duplicate set -->
+              <li class="testi-card" aria-hidden="true">
+                <p class="testi-quote">Our security posture improved dramatically with a user-friendly design and overwhelmingly positive feedback from our customers.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Farhan Siddiqui</span>
+                    <span class="testi-handle">Marketing Director</span>
+                  </div>
+                </div>
+              </li>
+              <li class="testi-card" aria-hidden="true">
+                <p class="testi-quote">They delivered a solution that truly exceeded expectations — understanding our needs and elevating our entire security operation.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Sana Sheikh</span>
+                    <span class="testi-handle">Sales Manager</span>
+                  </div>
+                </div>
+              </li>
+              <li class="testi-card" aria-hidden="true">
+                <p class="testi-quote">Using Snaarplock, our team's productivity and online security improved significantly, delivering a measurable boost to our bottom line.</p>
+                <div class="testi-author">
+                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <div class="testi-author-info">
+                    <span class="testi-name">Hassan Ali</span>
+                    <span class="testi-handle">E-commerce Manager</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
 
         </div>
 
