@@ -2225,6 +2225,748 @@
     @media (max-width: 480px) {
       .pricing-cards { max-width: 100%; }
     }
+
+    /* ==========================================
+       TESTIMONIALS SECTION
+    ========================================== */
+    .testimonials-section {
+      background: #fff;
+      padding: clamp(72px, 10vw, 120px) 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .testimonials-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 60px);
+    }
+
+    .testimonials-top {
+      text-align: center;
+      margin-bottom: clamp(40px, 5vw, 56px);
+    }
+
+    .testimonials-eyebrow {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-3);
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+
+    .testimonials-h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.9rem, 3.8vw, 3rem);
+      line-height: 1.06;
+      letter-spacing: -0.022em;
+      color: #192837;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .testi-card {
+      background: #F4F5F9;
+      border-radius: 20px;
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .testi-quote-mark {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 54px;
+      line-height: 0.8;
+      color: #C8CEEA;
+      font-weight: 900;
+      letter-spacing: -3px;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .testi-quote {
+      font-family: var(--font-body);
+      font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+      line-height: 1.65;
+      color: #192837;
+      flex: 1;
+      margin-bottom: 24px;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(25,40,55,0.06);
+    }
+
+    .testi-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .testi-author-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .testi-name {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #192837;
+      line-height: 1.3;
+    }
+
+    .testi-handle {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--text-3);
+      line-height: 1.4;
+    }
+
+    .testimonials-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-top: 36px;
+    }
+
+    .testi-dot {
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(25,40,55,0.15);
+      transition: background var(--t-fast), width var(--t-fast);
+    }
+
+    .testi-dot-active {
+      width: 22px;
+      background: #192837;
+    }
+
+    .testi-dot-inactive {
+      width: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .testi-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 480px;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .testi-card:last-child { grid-column: auto; max-width: 100%; }
+    }
+
+    /* ==========================================
+       GET STARTED SECTION
+    ========================================== */
+    .getstarted-section {
+      background: var(--bg-invert);
+      padding: clamp(80px, 12vw, 130px) 0;
+      overflow: hidden;
+    }
+
+    .getstarted-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 60px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 7vw, 90px);
+      align-items: center;
+    }
+
+    /* ─── Left: phone mockups ─── */
+    .gs-mockup-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 460px;
+    }
+
+    /* Back phone — tilted left */
+    .gs-phone-back {
+      position: absolute;
+      left: -10px;
+      top: 50%;
+      transform: translateY(-55%) rotate(-9deg);
+      width: 196px;
+      background: linear-gradient(145deg, #3b1872 0%, #7342E2 100%);
+      border-radius: 34px;
+      box-shadow: 0 28px 72px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.30);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .gs-phone-back-notch {
+      height: 26px;
+      background: rgba(0,0,0,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gs-phone-back-notch::after {
+      content: '';
+      width: 60px;
+      height: 12px;
+      background: rgba(0,0,0,0.45);
+      border-radius: 0 0 10px 10px;
+    }
+
+    .gs-phone-back-body {
+      padding: 18px 14px 24px;
+    }
+
+    .gs-back-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .gs-back-card-label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .gs-back-card-val {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      display: block;
+    }
+
+    .gs-back-pill-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .gs-back-pill {
+      background: rgba(255,255,255,0.14);
+      border-radius: 100px;
+      padding: 4px 10px;
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* Front phone — straight */
+    .gs-phone-front {
+      position: relative;
+      z-index: 2;
+      width: 214px;
+      margin-left: 60px;
+      background: #fff;
+      border-radius: 36px;
+      box-shadow: 0 36px 90px rgba(0,0,0,0.55), 0 6px 18px rgba(0,0,0,0.22);
+      overflow: hidden;
+    }
+
+    .gs-phone-front-notch {
+      height: 28px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gs-phone-front-notch::after {
+      content: '';
+      width: 68px;
+      height: 14px;
+      background: #0D1333;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .gs-phone-front-screen {
+      background: #F4F5F9;
+      padding: 12px 10px 20px;
+    }
+
+    /* Screen top bar */
+    .gs-screen-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2px;
+      margin-bottom: 12px;
+    }
+
+    .gs-screen-title {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      color: #192837;
+    }
+
+    .gs-screen-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Entry rows */
+    .gs-entry {
+      background: #fff;
+      border-radius: 10px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .gs-entry:last-child { margin-bottom: 0; }
+
+    .gs-entry-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 9.5px;
+      font-weight: 800;
+    }
+
+    .gs-entry-info { flex: 1; min-width: 0; }
+
+    .gs-entry-site {
+      font-family: var(--font-body);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #192837;
+      display: block;
+    }
+
+    .gs-entry-pw {
+      font-family: monospace;
+      font-size: 9.5px;
+      color: #B0AECC;
+      letter-spacing: 1.5px;
+      display: block;
+    }
+
+    .gs-entry-fill {
+      font-family: var(--font-body);
+      font-size: 8.5px;
+      font-weight: 700;
+      color: var(--color-accent);
+      border: 1.5px solid rgba(115,66,226,0.3);
+      border-radius: 100px;
+      padding: 2px 7px;
+      flex-shrink: 0;
+    }
+
+    /* Security badge at bottom of screen */
+    .gs-screen-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: #ECFDF5;
+      border-radius: 8px;
+      padding: 6px 8px;
+      margin-top: 8px;
+    }
+
+    .gs-screen-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #12B76A;
+      flex-shrink: 0;
+    }
+
+    .gs-screen-badge-text {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      color: #027A48;
+    }
+
+    /* ─── Right: content ─── */
+    .gs-content {}
+
+    .gs-h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .gs-p {
+      font-family: var(--font-body);
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      line-height: 1.72;
+      color: rgba(255,255,255,0.55);
+      max-width: 420px;
+      margin-bottom: 36px;
+    }
+
+    .gs-ctas {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 44px;
+    }
+
+    .btn-gs-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-accent);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 13px 26px;
+      border-radius: 100px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 28px rgba(115,66,226,0.40);
+      transition: transform var(--t-fast) var(--ease-spring), filter var(--t-fast);
+    }
+    .btn-gs-primary:hover  { transform: scale(1.04); filter: brightness(1.1); }
+    .btn-gs-primary:active { transform: scale(0.97); }
+
+    .btn-gs-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.82);
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(255,255,255,0.14);
+      border-radius: 100px;
+      padding: 12px 22px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background var(--t-fast), border-color var(--t-fast);
+    }
+    .btn-gs-secondary:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.24);
+    }
+
+    /* Social proof row */
+    .gs-social-proof {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .gs-avatars {
+      display: flex;
+      align-items: center;
+    }
+
+    .gs-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2.5px solid var(--bg-invert);
+      margin-left: -10px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .gs-avatar:first-child { margin-left: 0; }
+
+    .gs-proof-text { display: flex; flex-direction: column; }
+
+    .gs-proof-count {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      display: block;
+    }
+
+    .gs-proof-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .getstarted-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .gs-mockup-wrap {
+        min-height: 380px;
+        order: -1;
+      }
+      .gs-p { margin-left: auto; margin-right: auto; }
+      .gs-ctas { justify-content: center; }
+      .gs-social-proof { justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .gs-ctas { flex-direction: column; align-items: stretch; }
+      .btn-gs-primary, .btn-gs-secondary { justify-content: center; }
+      .gs-phone-front { margin-left: 40px; }
+    }
+
+    /* ==========================================
+       SITE FOOTER
+    ========================================== */
+    .site-footer {
+      background: #0D1B2A;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.028) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .footer-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 64px clamp(24px, 5vw, 60px) 32px;
+      position: relative;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.9fr 1fr 1fr 1fr;
+      gap: clamp(32px, 5vw, 72px);
+      margin-bottom: 48px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      margin-bottom: 18px;
+    }
+
+    .footer-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--color-accent);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .footer-logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .footer-brand-name {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .footer-brand-tagline {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.2;
+    }
+
+    .footer-desc {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.48);
+      line-height: 1.72;
+      max-width: 300px;
+      margin-bottom: 24px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 9px;
+    }
+
+    .footer-social-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.48);
+      text-decoration: none;
+      transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast);
+    }
+
+    .footer-social-btn:hover {
+      border-color: rgba(255,255,255,0.38);
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .footer-col-title {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.01em;
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.48);
+      text-decoration: none;
+      transition: color var(--t-fast);
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,0.88); }
+
+    .footer-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin-bottom: 28px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.34);
+    }
+
+    .footer-legal {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-legal a {
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.42);
+      text-decoration: none;
+      transition: color var(--t-fast);
+    }
+
+    .footer-legal a:hover { color: rgba(255,255,255,0.78); }
+
+    .footer-badges {
+      display: flex;
+      gap: 8px;
+    }
+
+    .footer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 100px;
+      padding: 5px 12px 5px 9px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 1024px) {
+      .footer-top {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px;
+      }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 640px) {
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+
+    @media (max-width: 380px) {
+      .footer-top { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -3217,7 +3959,314 @@
       </div>
     </section>
 
+    <!-- ======= TESTIMONIALS ======= -->
+    <section class="testimonials-section" id="testimonials" aria-labelledby="testimonials-heading">
+      <div class="testimonials-container">
+
+        <div class="testimonials-top">
+          <span class="testimonials-eyebrow">Testimonial</span>
+          <h2 class="testimonials-h2" id="testimonials-heading">Transformative Client Experiences</h2>
+        </div>
+
+        <div class="testimonials-grid">
+
+          <!-- Card 1 -->
+          <article class="testi-card">
+            <span class="testi-quote-mark" aria-hidden="true">&ldquo;</span>
+            <p class="testi-quote">Impressed by the professionalism and attention to detail.</p>
+            <div class="testi-author">
+              <div class="testi-avatar" aria-hidden="true" style="background:#DDE8FF;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="12" cy="8" r="4" fill="#4A6FA5"/>
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#4A6FA5"/>
+                </svg>
+              </div>
+              <div class="testi-author-info">
+                <span class="testi-name">Guy Hawkins</span>
+                <span class="testi-handle">@guyhawkins</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="testi-card">
+            <span class="testi-quote-mark" aria-hidden="true">&ldquo;</span>
+            <p class="testi-quote">A seamless experience from start to finish. Highly recommend!</p>
+            <div class="testi-author">
+              <div class="testi-avatar" aria-hidden="true" style="background:#FFE8D6;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="12" cy="8" r="4" fill="#A0522D"/>
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#A0522D"/>
+                </svg>
+              </div>
+              <div class="testi-author-info">
+                <span class="testi-name">Karla Lynn</span>
+                <span class="testi-handle">@karlalyn98</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="testi-card">
+            <span class="testi-quote-mark" aria-hidden="true">&ldquo;</span>
+            <p class="testi-quote">Reliable and trustworthy. Made my life so much easier!</p>
+            <div class="testi-author">
+              <div class="testi-avatar" aria-hidden="true" style="background:#E8F4E8;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="12" cy="8" r="4" fill="#3A7A3A"/>
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#3A7A3A"/>
+                </svg>
+              </div>
+              <div class="testi-author-info">
+                <span class="testi-name">Jane Cooper</span>
+                <span class="testi-handle">@janecooper</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======= GET STARTED ======= -->
+    <section class="getstarted-section" id="get-started" aria-labelledby="gs-heading">
+      <div class="getstarted-container">
+
+        <!-- LEFT: Phone mockups -->
+        <div class="gs-mockup-wrap" aria-hidden="true">
+
+          <!-- Back phone (tilted, purple) -->
+          <div class="gs-phone-back">
+            <div class="gs-phone-back-notch"></div>
+            <div class="gs-phone-back-body">
+              <div class="gs-back-card">
+                <span class="gs-back-card-label">Vault secured</span>
+                <span class="gs-back-card-val">128-bit AES</span>
+              </div>
+              <div class="gs-back-pill-row">
+                <span class="gs-back-pill">Zero-knowledge</span>
+                <span class="gs-back-pill">End-to-end</span>
+                <span class="gs-back-pill">Biometric lock</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Front phone (straight, white) -->
+          <div class="gs-phone-front">
+            <div class="gs-phone-front-notch"></div>
+            <div class="gs-phone-front-screen">
+
+              <div class="gs-screen-bar">
+                <span class="gs-screen-title">My Vault</span>
+                <div class="gs-screen-icon">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+              </div>
+
+              <!-- Entry 1 -->
+              <div class="gs-entry">
+                <div class="gs-entry-icon" style="background:#E8F4FF; color:#1A73E8;">G</div>
+                <div class="gs-entry-info">
+                  <span class="gs-entry-site">Google</span>
+                  <span class="gs-entry-pw">••••••••••</span>
+                </div>
+                <span class="gs-entry-fill">Fill</span>
+              </div>
+
+              <!-- Entry 2 -->
+              <div class="gs-entry">
+                <div class="gs-entry-icon" style="background:#FFF0F0; color:#E8222A;">N</div>
+                <div class="gs-entry-info">
+                  <span class="gs-entry-site">Netflix</span>
+                  <span class="gs-entry-pw">••••••••••</span>
+                </div>
+                <span class="gs-entry-fill">Fill</span>
+              </div>
+
+              <!-- Entry 3 -->
+              <div class="gs-entry">
+                <div class="gs-entry-icon" style="background:#F0EEFF; color:#7342E2;">S</div>
+                <div class="gs-entry-info">
+                  <span class="gs-entry-site">Slack</span>
+                  <span class="gs-entry-pw">••••••••••</span>
+                </div>
+                <span class="gs-entry-fill">Fill</span>
+              </div>
+
+              <!-- Entry 4 -->
+              <div class="gs-entry">
+                <div class="gs-entry-icon" style="background:#E8F5E9; color:#1A7A3A;">D</div>
+                <div class="gs-entry-info">
+                  <span class="gs-entry-site">Dropbox</span>
+                  <span class="gs-entry-pw">••••••••••</span>
+                </div>
+                <span class="gs-entry-fill">Fill</span>
+              </div>
+
+              <!-- Security badge -->
+              <div class="gs-screen-badge">
+                <span class="gs-screen-badge-dot"></span>
+                <span class="gs-screen-badge-text">Vault is locked &amp; encrypted</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Content -->
+        <div class="gs-content">
+
+          <h2 class="gs-h2" id="gs-heading">Take control of your passwords. Today.</h2>
+
+          <p class="gs-p">
+            From easy setup to military-grade encryption, Snaarplock has everything you need to secure your digital life — across every device, in seconds.
+          </p>
+
+          <div class="gs-ctas">
+            <a href="#" class="btn-gs-primary">
+              Open account
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="#" class="btn-gs-secondary">Generate your vault</a>
+          </div>
+
+          <!-- Social proof -->
+          <div class="gs-social-proof">
+            <div class="gs-avatars" aria-hidden="true">
+              <div class="gs-avatar" style="background:#DDE8FF;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#4A6FA5"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#4A6FA5"/></svg>
+              </div>
+              <div class="gs-avatar" style="background:#FFE8D6;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#A0522D"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#A0522D"/></svg>
+              </div>
+              <div class="gs-avatar" style="background:#E8F4E8;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#3A7A3A"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#3A7A3A"/></svg>
+              </div>
+              <div class="gs-avatar" style="background:#F0EEFF;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#7342E2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#7342E2"/></svg>
+              </div>
+            </div>
+            <div class="gs-proof-text">
+              <span class="gs-proof-count">40,000+</span>
+              <span class="gs-proof-label">Early users already secured</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
   </main>
+
+  <!-- ======= FOOTER ======= -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="footer-inner">
+
+      <!-- Top: brand + link columns -->
+      <div class="footer-top">
+
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <a href="#" class="footer-logo" aria-label="Snaarplock home">
+            <div class="footer-logo-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <div class="footer-logo-text">
+              <span class="footer-brand-name">Snaarplock</span>
+              <span class="footer-brand-tagline">Intelligent Security</span>
+            </div>
+          </a>
+          <p class="footer-desc">Empowering individuals and businesses worldwide with military-grade encryption. Protect your credentials, unlock your productivity, and take full control of your digital security.</p>
+          <div class="footer-socials" aria-label="Social media links">
+            <!-- Twitter / X -->
+            <a href="#" class="footer-social-btn" aria-label="Follow us on X (Twitter)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.74-8.861L2.25 2.25h6.927l4.261 5.636 5.806-5.636Zm-1.161 17.52h1.833L7.084 4.126H5.117Z"/></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="#" class="footer-social-btn" aria-label="Follow us on LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <!-- GitHub -->
+            <a href="#" class="footer-social-btn" aria-label="Follow us on GitHub">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+            <!-- YouTube -->
+            <a href="#" class="footer-social-btn" aria-label="Watch us on YouTube">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20.06 12 20.06 12 20.06s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0D1B2A"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Products column -->
+        <nav class="footer-col" aria-label="Products">
+          <h3 class="footer-col-title">Products</h3>
+          <ul class="footer-links">
+            <li><a href="#">Vault Manager</a></li>
+            <li><a href="#">Password Generator</a></li>
+            <li><a href="#">Auto-fill</a></li>
+            <li><a href="#">Secure Sharing</a></li>
+            <li><a href="#">Browser Extension</a></li>
+          </ul>
+        </nav>
+
+        <!-- Company column -->
+        <nav class="footer-col" aria-label="Company">
+          <h3 class="footer-col-title">Company</h3>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Partners</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Resources column -->
+        <nav class="footer-col" aria-label="Resources">
+          <h3 class="footer-col-title">Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Support Center</a></li>
+            <li><a href="#">Community</a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <!-- Divider -->
+      <div class="footer-divider" role="separator"></div>
+
+      <!-- Bottom bar -->
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Snaarplock. All rights reserved.</p>
+        <nav class="footer-legal" aria-label="Legal links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Security</a>
+        </nav>
+        <div class="footer-badges" aria-label="Compliance certifications">
+          <span class="footer-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            GDPR
+          </span>
+          <span class="footer-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            ISO 27001
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
 
   <script>
     // Nav → frosted glass on scroll
