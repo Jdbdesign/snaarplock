@@ -1873,24 +1873,15 @@
     }
 
     .security-container {
-      max-width: 1160px;
+      max-width: 1240px;
       margin: 0 auto;
       padding: 0 clamp(24px, 5vw, 60px);
     }
 
-    /* 3-col × 2-row unified grid — text block is item [0] */
-    .security-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    /* Text block — plain, no card background */
-    .security-text-block {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 12px 0 12px;
+    /* Section header above carousel */
+    .seccar-header {
+      margin-bottom: clamp(32px, 4vw, 48px);
+      max-width: 580px;
     }
 
     .security-eyebrow {
@@ -1933,73 +1924,267 @@
       opacity: 0.72;
     }
 
-    /* White service cards */
-    .sec-card {
-      background: #fff;
-      border-radius: 18px;
-      padding: 28px 24px 24px;
-      box-shadow: 0 2px 10px rgba(13,19,51,0.055), 0 1px 2px rgba(13,19,51,0.035);
+    /* ── Carousel Wrapper ── */
+    .seccar-wrap {
       display: flex;
-      flex-direction: column;
-      transition: box-shadow var(--t-normal) var(--ease-out), transform var(--t-normal) var(--ease-out);
+      border-radius: 40px;
+      overflow: hidden;
+      border: 1px solid rgba(25,40,55,0.10);
+      min-height: 540px;
     }
 
-    .sec-card:hover {
-      box-shadow: 0 10px 36px rgba(13,19,51,0.10), 0 2px 6px rgba(13,19,51,0.05);
-      transform: translateY(-3px);
+    /* ── Left Panel: feature selector ── */
+    .seccar-left {
+      width: 40%;
+      flex-shrink: 0;
+      background: var(--color-accent);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+      padding: 0 clamp(20px, 3vw, 44px);
     }
 
-    .sec-card-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
+    /* Gradient fade masks (top & bottom) */
+    .seccar-fade-top,
+    .seccar-fade-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 80px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .seccar-fade-top    { top: 0;    background: linear-gradient(to bottom, #7342E2 0%, rgba(115,66,226,0) 100%); }
+    .seccar-fade-bottom { bottom: 0; background: linear-gradient(to top,   #7342E2 0%, rgba(115,66,226,0) 100%); }
+
+    /* Track: items are absolutely centered and shifted by JS */
+    .seccar-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      z-index: 5;
+    }
+
+    /* Individual feature selector pills */
+    .seccar-item {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 20px;
+      border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+      color: rgba(255,255,255,0.52);
+      transform: translateY(-50%);
+      transition:
+        transform     0.54s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity       0.46s ease,
+        background    0.38s ease,
+        border-color  0.38s ease,
+        color         0.38s ease;
+      will-change: transform, opacity;
+      white-space: nowrap;
+    }
+
+    /* Suppress position/opacity transitions on first paint only */
+    .seccar-track.seccar-notrans .seccar-item {
+      transition:
+        background    0.38s ease,
+        border-color  0.38s ease,
+        color         0.38s ease !important;
+    }
+
+    .seccar-item:hover:not(.active) {
+      border-color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.8);
+    }
+
+    .seccar-item.active {
+      background: #fff;
+      border-color: #fff;
+      color: var(--color-accent);
+    }
+
+    .seccar-item-icon {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
       flex-shrink: 0;
+      color: inherit;
     }
 
-    .sec-card-title {
+    .seccar-item-label {
       font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 700;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: inherit;
+    }
+
+    /* ── Right Panel: image cards ── */
+    .seccar-right {
+      flex: 1;
+      background: #E8E9EE;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(32px, 5vw, 56px) clamp(24px, 4vw, 48px);
+      border-left: 1px solid rgba(25,40,55,0.07);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Cards stage — all cards stack here */
+    .seccar-cards-stage {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 4 / 5;
+    }
+
+    /* Individual cards */
+    .seccar-card {
+      position: absolute;
+      inset: 0;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 5px solid #fff;
+      background: #fff;
+      transform-origin: center center;
+      transition:
+        transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity   0.42s ease,
+        filter    0.55s ease;
+      will-change: transform, opacity;
+    }
+
+    .seccar-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: filter 0.65s ease;
+      filter: grayscale(1) blur(2px) brightness(0.72);
+      display: block;
+    }
+
+    .seccar-card.active .seccar-card-img {
+      filter: none;
+    }
+
+    /* Gradient overlay + description — only visible on active card */
+    .seccar-card-overlay {
+      position: absolute;
+      inset-x: 0;
+      bottom: 0;
+      padding: 48px 22px 26px;
+      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.38) 55%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.32s ease 0.08s, transform 0.32s ease 0.08s;
+      pointer-events: none;
+    }
+
+    .seccar-card.active .seccar-card-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .seccar-card-tag {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       color: #192837;
-      letter-spacing: -0.01em;
+      background: #fff;
+      display: inline-flex;
+      padding: 4px 11px;
+      border-radius: 100px;
+      width: fit-content;
       margin-bottom: 10px;
     }
 
-    .sec-card-desc {
+    .seccar-card-desc {
       font-family: var(--font-body);
-      font-size: 0.875rem;
-      color: var(--text-2);
-      line-height: 1.65;
-      flex: 1;
-      margin-bottom: 20px;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
     }
 
-    .sec-card-link {
-      font-family: var(--font-body);
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #192837;
-      text-decoration: none;
-      display: inline-flex;
+    /* Live badge — top-left of active card */
+    .seccar-live-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      display: flex;
       align-items: center;
-      gap: 5px;
-      transition: gap var(--t-fast), opacity var(--t-fast);
+      gap: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease 0.15s;
     }
 
-    .sec-card-link:hover { opacity: 0.6; gap: 8px; }
-
-    @media (max-width: 900px) {
-      .security-grid { grid-template-columns: repeat(2, 1fr); }
-      .security-text-block { grid-column: 1 / -1; padding: 0; }
+    .seccar-card.active .seccar-live-badge {
+      opacity: 1;
     }
 
-    @media (max-width: 560px) {
-      .security-grid { grid-template-columns: 1fr; }
-      .security-text-block { grid-column: auto; }
+    .seccar-live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 0 rgba(255,255,255,0.7);
+      animation: seccarPulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes seccarPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+      70%  { box-shadow: 0 0 0 7px rgba(255,255,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+    }
+
+    .seccar-live-text {
+      font-family: var(--font-body);
+      font-size: 9.5px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .seccar-wrap { flex-direction: column; border-radius: 28px; min-height: unset; }
+      .seccar-left { width: 100%; min-height: 300px; padding: 0 clamp(20px,4vw,36px); justify-content: center; }
+      .seccar-right { border-left: none; border-top: 1px solid rgba(25,40,55,0.07); min-height: 460px; }
+      .seccar-fade-top    { background: linear-gradient(to bottom, #7342E2 0%, rgba(115,66,226,0) 100%); }
+      .seccar-fade-bottom { background: linear-gradient(to top,   #7342E2 0%, rgba(115,66,226,0) 100%); }
+    }
+
+    @media (max-width: 540px) {
+      .seccar-wrap { border-radius: 20px; }
+      .seccar-left { min-height: 260px; }
+      .seccar-right { min-height: 400px; padding: 36px 20px; }
+      .seccar-cards-stage { max-width: 260px; }
+      .seccar-card { border-width: 4px; border-radius: 22px; }
     }
 
     /* ==========================================
@@ -3860,67 +4045,139 @@
     <section class="security-section" id="security" aria-labelledby="security-heading">
       <div class="security-container">
 
-        <!-- 3-col × 2-row grid: text block is item [0], 5 cards fill the rest -->
-        <div class="security-grid">
-
-          <!-- Item 0: Text block — no card background -->
-          <div class="security-text-block">
-            <span class="security-eyebrow">Security Architecture</span>
-            <h2 class="security-h2" id="security-heading">Built to protect you at every layer</h2>
-            <p class="security-sub">Snaarplock's security model is engineered from the ground up — multiple independent layers keep your vault safe even if one layer fails.</p>
-          </div>
-
-          <!-- Card 1 (row 1, col 2): End-to-End Encryption -->
-          <div class="sec-card">
-            <div class="sec-card-icon" style="background:#F0EEFF;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>
-            </div>
-            <h3 class="sec-card-title">End-to-End Encryption</h3>
-            <p class="sec-card-desc">Your vault is encrypted with AES-256 before it ever leaves your device. Only you hold the key — we never see your data, period.</p>
-            <a href="#" class="sec-card-link">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-          </div>
-
-          <!-- Card 2 (row 1, col 3): Zero-Knowledge Architecture -->
-          <div class="sec-card">
-            <div class="sec-card-icon" style="background:#FFF1F0;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F04438" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3 class="sec-card-title">Zero-Knowledge Architecture</h3>
-            <p class="sec-card-desc">Snaarplock cannot read, access, or share your passwords — ever. Your master password is hashed locally and never transmitted to our servers.</p>
-            <a href="#" class="sec-card-link">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-          </div>
-
-          <!-- Card 3 (row 2, col 1): Two-Factor Authentication -->
-          <div class="sec-card">
-            <div class="sec-card-icon" style="background:#ECFDF5;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#12B76A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            </div>
-            <h3 class="sec-card-title">Two-Factor Authentication</h3>
-            <p class="sec-card-desc">TOTP apps, hardware security keys, and passkeys are all supported. A stolen master password still can't open your vault without the second factor.</p>
-            <a href="#" class="sec-card-link">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-          </div>
-
-          <!-- Card 4 (row 2, col 2): Breach Monitoring -->
-          <div class="sec-card">
-            <div class="sec-card-icon" style="background:#FFFAEB;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F79009" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            </div>
-            <h3 class="sec-card-title">Breach Monitoring</h3>
-            <p class="sec-card-desc">We continuously scan billions of leaked credentials and alert you the moment any of your accounts appear in a known data breach.</p>
-            <a href="#" class="sec-card-link">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-          </div>
-
-          <!-- Card 5 (row 2, col 3): Biometric Unlock -->
-          <div class="sec-card">
-            <div class="sec-card-icon" style="background:#E3F0FF;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#244FFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></svg>
-            </div>
-            <h3 class="sec-card-title">Biometric Unlock</h3>
-            <p class="sec-card-desc">Unlock with Face ID, Touch ID, or Windows Hello — instant access on every trusted device without ever typing your master password again.</p>
-            <a href="#" class="sec-card-link">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-          </div>
-
+        <!-- Section header -->
+        <div class="seccar-header">
+          <span class="security-eyebrow">Security Architecture</span>
+          <h2 class="security-h2" id="security-heading">Built to protect you at every layer</h2>
+          <p class="security-sub">Snaarplock's security model is engineered from the ground up — multiple independent layers keep your vault safe even if one layer fails.</p>
         </div>
+
+        <!-- Feature Carousel -->
+        <div class="seccar-wrap" id="seccar">
+
+          <!-- Left: scrolling feature label list -->
+          <div class="seccar-left">
+            <div class="seccar-fade-top"    aria-hidden="true"></div>
+            <div class="seccar-fade-bottom" aria-hidden="true"></div>
+
+            <div class="seccar-track" role="list" aria-label="Security features">
+
+              <!-- Feature 0 -->
+              <button class="seccar-item" data-seccar-idx="0" role="listitem" aria-label="End-to-End Encryption">
+                <span class="seccar-item-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>
+                </span>
+                <span class="seccar-item-label">End-to-End Encryption</span>
+              </button>
+
+              <!-- Feature 1 -->
+              <button class="seccar-item" data-seccar-idx="1" role="listitem" aria-label="Zero-Knowledge Architecture">
+                <span class="seccar-item-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </span>
+                <span class="seccar-item-label">Zero-Knowledge Architecture</span>
+              </button>
+
+              <!-- Feature 2 -->
+              <button class="seccar-item" data-seccar-idx="2" role="listitem" aria-label="Two-Factor Authentication">
+                <span class="seccar-item-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                </span>
+                <span class="seccar-item-label">Two-Factor Authentication</span>
+              </button>
+
+              <!-- Feature 3 -->
+              <button class="seccar-item" data-seccar-idx="3" role="listitem" aria-label="Breach Monitoring">
+                <span class="seccar-item-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </span>
+                <span class="seccar-item-label">Breach Monitoring</span>
+              </button>
+
+              <!-- Feature 4 -->
+              <button class="seccar-item" data-seccar-idx="4" role="listitem" aria-label="Biometric Unlock">
+                <span class="seccar-item-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></svg>
+                </span>
+                <span class="seccar-item-label">Biometric Unlock</span>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Right: stacked image cards -->
+          <div class="seccar-right">
+            <div class="seccar-cards-stage" role="region" aria-label="Feature details">
+
+              <!-- Card 0: End-to-End Encryption -->
+              <div class="seccar-card" data-seccar-card="0">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200" alt="End-to-End Encryption" class="seccar-card-img" loading="lazy">
+                <div class="seccar-card-overlay">
+                  <span class="seccar-card-tag">1 · End-to-End Encryption</span>
+                  <p class="seccar-card-desc">Your vault is encrypted with AES-256 before it ever leaves your device. Only you hold the key — we never see your data, period.</p>
+                </div>
+                <div class="seccar-live-badge" aria-hidden="true">
+                  <span class="seccar-live-dot"></span>
+                  <span class="seccar-live-text">Live Session</span>
+                </div>
+              </div>
+
+              <!-- Card 1: Zero-Knowledge Architecture -->
+              <div class="seccar-card" data-seccar-card="1">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200" alt="Zero-Knowledge Architecture" class="seccar-card-img" loading="lazy">
+                <div class="seccar-card-overlay">
+                  <span class="seccar-card-tag">2 · Zero-Knowledge Architecture</span>
+                  <p class="seccar-card-desc">Snaarplock cannot read, access, or share your passwords — ever. Your master password is hashed locally and never transmitted.</p>
+                </div>
+                <div class="seccar-live-badge" aria-hidden="true">
+                  <span class="seccar-live-dot"></span>
+                  <span class="seccar-live-text">Live Session</span>
+                </div>
+              </div>
+
+              <!-- Card 2: Two-Factor Authentication -->
+              <div class="seccar-card" data-seccar-card="2">
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200" alt="Two-Factor Authentication" class="seccar-card-img" loading="lazy">
+                <div class="seccar-card-overlay">
+                  <span class="seccar-card-tag">3 · Two-Factor Authentication</span>
+                  <p class="seccar-card-desc">TOTP apps, hardware keys, and passkeys all supported. A stolen master password still can't open your vault without the second factor.</p>
+                </div>
+                <div class="seccar-live-badge" aria-hidden="true">
+                  <span class="seccar-live-dot"></span>
+                  <span class="seccar-live-text">Live Session</span>
+                </div>
+              </div>
+
+              <!-- Card 3: Breach Monitoring -->
+              <div class="seccar-card" data-seccar-card="3">
+                <img src="https://images.unsplash.com/photo-1551288049-bbda38a10ad5?q=80&w=1200" alt="Breach Monitoring" class="seccar-card-img" loading="lazy">
+                <div class="seccar-card-overlay">
+                  <span class="seccar-card-tag">4 · Breach Monitoring</span>
+                  <p class="seccar-card-desc">We continuously scan billions of leaked credentials and alert you the moment any of your accounts appear in a known data breach.</p>
+                </div>
+                <div class="seccar-live-badge" aria-hidden="true">
+                  <span class="seccar-live-dot"></span>
+                  <span class="seccar-live-text">Live Session</span>
+                </div>
+              </div>
+
+              <!-- Card 4: Biometric Unlock -->
+              <div class="seccar-card" data-seccar-card="4">
+                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200" alt="Biometric Unlock" class="seccar-card-img" loading="lazy">
+                <div class="seccar-card-overlay">
+                  <span class="seccar-card-tag">5 · Biometric Unlock</span>
+                  <p class="seccar-card-desc">Unlock with Face ID, Touch ID, or Windows Hello — instant access on every trusted device without typing your master password again.</p>
+                </div>
+                <div class="seccar-live-badge" aria-hidden="true">
+                  <span class="seccar-live-dot"></span>
+                  <span class="seccar-live-text">Live Session</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div><!-- /seccar-wrap -->
 
       </div>
     </section>
@@ -4567,6 +4824,127 @@
 
     btnMonthly.addEventListener('click', () => setPricingPeriod('monthly'));
     btnYearly.addEventListener('click',  () => setPricingPeriod('yearly'));
+
+    // ── Security Feature Carousel ──────────────────────────────────────────
+    // Mirrors framer-motion FeatureCarousel: spring-style vertical item scroll
+    // on the left, stacked card transitions on the right.
+    (function () {
+      var ITEM_HEIGHT   = 62;
+      var AUTO_INTERVAL = 3200;
+      var N = 5; // total features
+
+      var seccar   = document.getElementById('seccar');
+      if (!seccar) return;
+
+      var items    = Array.from(seccar.querySelectorAll('.seccar-item'));
+      var cards    = Array.from(seccar.querySelectorAll('.seccar-card'));
+      var leftPane = seccar.querySelector('.seccar-left');
+      var track    = seccar.querySelector('.seccar-track');
+
+      var currentIdx = 0;
+      var timer      = null;
+
+      // Wrap a value into [min, max)
+      function wrapRange(min, max, v) {
+        var size = max - min;
+        return ((((v - min) % size) + size) % size) + min;
+      }
+
+      function update(noTrans) {
+        var halfN = N / 2;
+
+        if (noTrans && track) track.classList.add('seccar-notrans');
+
+        // --- Left panel items ---
+        items.forEach(function (item, i) {
+          var dist     = i - currentIdx;
+          var wrapped  = wrapRange(-halfN, halfN, dist);
+          var yOffset  = wrapped * ITEM_HEIGHT;
+          var opacity  = Math.max(0, 1 - Math.abs(wrapped) * 0.26);
+          var isActive = (i === currentIdx);
+
+          item.style.transform = 'translateY(calc(-50% + ' + yOffset + 'px))';
+          item.style.opacity   = opacity;
+          item.classList.toggle('active', isActive);
+          item.setAttribute('aria-current', isActive ? 'true' : 'false');
+        });
+
+        if (noTrans && track) {
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              track.classList.remove('seccar-notrans');
+            });
+          });
+        }
+
+        // --- Right panel cards ---
+        cards.forEach(function (card, i) {
+          var diff = i - currentIdx;
+          var normalizedDiff = diff;
+          if (diff > N / 2)  normalizedDiff -= N;
+          if (diff < -N / 2) normalizedDiff += N;
+
+          var isActive = normalizedDiff === 0;
+          var isPrev   = normalizedDiff === -1;
+          var isNext   = normalizedDiff === 1;
+
+          card.classList.toggle('active', isActive);
+
+          if (isActive) {
+            card.style.transform    = 'translateX(0) scale(1) rotate(0deg)';
+            card.style.opacity      = '1';
+            card.style.zIndex       = '20';
+            card.style.pointerEvents = 'auto';
+          } else if (isPrev) {
+            card.style.transform    = 'translateX(-90px) scale(0.85) rotate(-3deg)';
+            card.style.opacity      = '0.38';
+            card.style.zIndex       = '10';
+            card.style.pointerEvents = 'none';
+          } else if (isNext) {
+            card.style.transform    = 'translateX(90px) scale(0.85) rotate(3deg)';
+            card.style.opacity      = '0.38';
+            card.style.zIndex       = '10';
+            card.style.pointerEvents = 'none';
+          } else {
+            card.style.transform    = 'translateX(0) scale(0.7) rotate(0deg)';
+            card.style.opacity      = '0';
+            card.style.zIndex       = '0';
+            card.style.pointerEvents = 'none';
+          }
+        });
+      }
+
+      function goTo(index) {
+        currentIdx = ((index % N) + N) % N;
+        update();
+      }
+
+      function next() { goTo(currentIdx + 1); }
+
+      function startTimer() {
+        if (timer) clearInterval(timer);
+        timer = setInterval(next, AUTO_INTERVAL);
+      }
+
+      function stopTimer() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      // Click on a label to jump to it
+      items.forEach(function (item, i) {
+        item.addEventListener('click', function () { goTo(i); startTimer(); });
+      });
+
+      // Pause on hover
+      if (leftPane) {
+        leftPane.addEventListener('mouseenter', stopTimer);
+        leftPane.addEventListener('mouseleave', startTimer);
+      }
+
+      // Init — suppress transform/opacity transition on first paint
+      update(true);
+      startTimer();
+    }());
 
     // Problem section — scroll-triggered entrance animations
     // Mirrors framer-motion containerVariants (staggerChildren) + itemVariants + imageVariants
