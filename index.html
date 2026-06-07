@@ -1677,6 +1677,38 @@
     }
 
     /* ==========================================
+       BENTO — SCROLL ENTRANCE ANIMATIONS
+    ========================================== */
+
+    /* Mirrors FeatureHighlightCard itemVariants: y:20 opacity:0 → y:0 opacity:1 */
+    .inc-fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.6, -0.05, 0.01, 0.99),
+                  transform 0.6s cubic-bezier(0.6, -0.05, 0.01, 0.99);
+    }
+    /* Mirrors FeatureHighlightCard imageContainerVariants: scale:0.9 opacity:0 → scale:1 opacity:1 */
+    .inc-scale-in {
+      opacity: 0;
+      transform: scale(0.9) translateY(14px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .inc-fade-up.inc-visible,
+    .inc-scale-in.inc-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Stagger delays (mirrors containerVariants staggerChildren: 0.2s) */
+    .inc-d1 { transition-delay: 0.05s; }
+    .inc-d2 { transition-delay: 0.20s; }
+    .inc-d3 { transition-delay: 0.35s; }
+    .inc-d4 { transition-delay: 0.50s; }
+    .inc-d5 { transition-delay: 0.65s; }
+    .inc-d6 { transition-delay: 0.80s; }
+
+    /* ==========================================
        BENTO — INTERACTIVE CARD ANIMATIONS
     ========================================== */
 
@@ -3937,14 +3969,14 @@
       <div class="included-container">
 
         <div class="included-header">
-          <h2 class="included-h2" id="included-heading">Snaarplock handles the details</h2>
-          <p class="included-sub">One master password protects everything — passwords, notes, and cards — always in sync across every device.</p>
+          <h2 class="included-h2 inc-fade-up inc-d1" id="included-heading">Snaarplock handles the details</h2>
+          <p class="included-sub inc-fade-up inc-d2">One master password protects everything — passwords, notes, and cards — always in sync across every device.</p>
         </div>
 
         <div class="included-grid">
 
           <!-- Top-left: Password Generator -->
-          <div class="inc-card">
+          <div class="inc-card inc-fade-up inc-d3">
             <h3 class="inc-card-title">Password Generator</h3>
             <p class="inc-card-desc">Creates strong, unique passwords for every site you visit.</p>
             <div class="inc-card-visual">
@@ -3971,7 +4003,7 @@
           </div>
 
           <!-- CENTER tall: Auto Sync -->
-          <div class="inc-card-center">
+          <div class="inc-card-center inc-scale-in inc-d2">
             <h3 class="inc-center-title">Auto Sync</h3>
             <p class="inc-center-desc">We ensure your vault is always up to date. Every password, note, and card — synced in real time.</p>
             <div class="inc-device-wrap">
@@ -4020,7 +4052,7 @@
           </div>
 
           <!-- Top-right: Browser Extensions -->
-          <div class="inc-card">
+          <div class="inc-card inc-fade-up inc-d4">
             <h3 class="inc-card-title">Browser Extensions</h3>
             <p class="inc-card-desc">One-click autofill across Chrome, Firefox, Safari, and Edge.</p>
             <div class="inc-card-visual">
@@ -4062,7 +4094,7 @@
           </div>
 
           <!-- Bottom-left: Secure Sharing -->
-          <div class="inc-card">
+          <div class="inc-card inc-fade-up inc-d5">
             <h3 class="inc-card-title">Secure Sharing</h3>
             <p class="inc-card-desc">Share vault items with family or teammates — zero-knowledge, end-to-end encrypted.</p>
             <div class="inc-card-visual">
@@ -4099,7 +4131,7 @@
           </div>
 
           <!-- Bottom-right: Zero-Knowledge Security -->
-          <div class="inc-card">
+          <div class="inc-card inc-fade-up inc-d6">
             <h3 class="inc-card-title">Zero-Knowledge Security</h3>
             <p class="inc-card-desc">AES-256 encryption, biometric unlock, and additional protection are always active.</p>
             <div class="inc-card-visual">
@@ -5517,6 +5549,30 @@
       }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
       animEls.forEach(function (el) { observer.observe(el); });
+    }());
+
+    // "Snaarplock handles the details" — scroll-triggered entrance animations
+    // Mirrors FeatureHighlightCard containerVariants (staggerChildren) + itemVariants + imageContainerVariants
+    (function () {
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.inc-fade-up, .inc-scale-in').forEach(function (el) {
+          el.classList.add('inc-visible');
+        });
+        return;
+      }
+
+      var incEls = document.querySelectorAll('.inc-fade-up, .inc-scale-in');
+
+      var incObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('inc-visible');
+            incObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
+
+      incEls.forEach(function (el) { incObserver.observe(el); });
     }());
   </script>
 
