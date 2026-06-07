@@ -1080,6 +1080,340 @@
     }
 
     /* ==========================================
+       GETTING STARTED SECTION
+    ========================================== */
+    .setup-section {
+      background: #F8F9FC;
+      padding: clamp(72px, 10vw, 120px) 0;
+    }
+
+    .setup-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 60px);
+    }
+
+    /* Top heading block */
+    .setup-top {
+      margin-bottom: clamp(44px, 5.5vw, 64px);
+    }
+
+    .setup-h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.9rem, 3.8vw, 3rem);
+      line-height: 1.06;
+      letter-spacing: -0.022em;
+      color: #192837;
+      margin-bottom: 14px;
+      max-width: 600px;
+    }
+
+    .setup-sub {
+      font-family: var(--font-body);
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      color: var(--text-2);
+      opacity: 0.72;
+      max-width: 500px;
+      line-height: 1.65;
+    }
+
+    /* Two-column body */
+    .setup-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(36px, 6vw, 76px);
+      align-items: center;
+    }
+
+    /* ─── LEFT: mockup card ─── */
+    .setup-mockup-wrap {
+      border-radius: 24px;
+      background: linear-gradient(145deg, #EDE8F8 0%, #D0C4F0 100%);
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: visible;
+      padding: 36px 28px;
+    }
+
+    .setup-app-card {
+      background: #fff;
+      border-radius: 18px;
+      width: 100%;
+      max-width: 320px;
+      box-shadow: 0 16px 48px rgba(25,40,55,0.14), 0 2px 8px rgba(25,40,55,0.06);
+      overflow: hidden;
+    }
+
+    /* App card header bar */
+    .sac-topbar {
+      background: #192837;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sac-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .sac-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    .sac-title {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      flex: 1;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    /* App card body */
+    .sac-body {
+      padding: 18px 16px 20px;
+    }
+
+    /* Progress badge */
+    .sac-progress-badge {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: #ECFDF5;
+      border-radius: 100px;
+      padding: 5px 12px 5px 8px;
+      width: fit-content;
+      margin-bottom: 16px;
+    }
+
+    .sac-progress-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #12B76A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sac-progress-text {
+      font-family: var(--font-body);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #027A48;
+    }
+
+    /* Vault entries */
+    .sac-vault-label {
+      font-family: var(--font-body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #8B93B3;
+      margin-bottom: 10px;
+    }
+
+    .sac-entry {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid #F4F5F9;
+    }
+
+    .sac-entry:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .sac-entry-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .sac-entry-info { flex: 1; min-width: 0; }
+
+    .sac-entry-site {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      color: #192837;
+      display: block;
+    }
+
+    .sac-entry-pw {
+      font-family: monospace;
+      font-size: 10.5px;
+      color: #B0AECC;
+      letter-spacing: 2px;
+      display: block;
+    }
+
+    .sac-entry-fill {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--color-accent);
+      padding: 3px 9px;
+      border: 1.5px solid rgba(115,66,226,0.3);
+      border-radius: 100px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Floating chip */
+    .setup-chip {
+      position: absolute;
+      background: #fff;
+      border-radius: 14px;
+      padding: 10px 14px;
+      box-shadow: 0 8px 28px rgba(25,40,55,0.12);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .setup-chip-tl { top: 24px; left: -16px; }
+    .setup-chip-br { bottom: 28px; right: -16px; }
+
+    .sc-iconbox {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sc-val {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #192837;
+      display: block;
+      line-height: 1.1;
+    }
+
+    .sc-lbl {
+      font-family: var(--font-body);
+      font-size: 10px;
+      color: #8B93B3;
+      display: block;
+      white-space: nowrap;
+    }
+
+    /* ─── RIGHT: steps ─── */
+    .setup-steps-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 22px;
+    }
+
+    .setup-steps { display: flex; flex-direction: column; }
+
+    .setup-step {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+      border-radius: 16px;
+      margin-bottom: 10px;
+    }
+
+    .setup-step:last-child { margin-bottom: 0; }
+
+    .setup-step-purple { background: #EDE8F8; }
+    .setup-step-blue   { background: #E3F0FF; }
+    .setup-step-green  { background: #ECFDF5; }
+
+    .step-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      background: #EDE8F8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .setup-step-title {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #192837;
+      letter-spacing: -0.01em;
+      margin-bottom: 5px;
+    }
+
+    .setup-step-desc {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--text-2);
+      opacity: 0.75;
+      line-height: 1.6;
+      max-width: 360px;
+    }
+
+    .setup-cta {
+      margin-top: 32px;
+    }
+
+    .btn-setup-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #192837;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 13px 26px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform var(--t-fast) var(--ease-spring), filter var(--t-fast);
+    }
+
+    .btn-setup-primary:hover  { transform: scale(1.04); filter: brightness(1.15); }
+    .btn-setup-primary:active { transform: scale(0.97); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .setup-body {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .setup-mockup-wrap {
+        min-height: 360px;
+      }
+      .setup-chip-tl,
+      .setup-chip-br { display: none; }
+    }
+
+    /* ==========================================
        WHAT'S INCLUDED SECTION
     ========================================== */
     .included-section {
@@ -1831,6 +2165,164 @@
                 <span style="background:linear-gradient(135deg,#7342E2,#a87af7);border-radius:8px;padding:6px 11px;font-size:11px;font-weight:700;color:#fff;font-family:var(--font-body);letter-spacing:0.04em;white-space:nowrap;">E2E&#160;Encrypted</span>
               </div>
             </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======= GETTING STARTED ======= -->
+    <section class="setup-section" id="getting-started" aria-labelledby="setup-heading">
+      <div class="setup-container">
+
+        <!-- Top heading -->
+        <div class="setup-top">
+          <h2 class="setup-h2" id="setup-heading">Get up and running<br>in under 2 minutes</h2>
+          <p class="setup-sub">Snaarplock plugs into your browser and starts protecting you instantly — no migration headaches, no complex setup required.</p>
+        </div>
+
+        <div class="setup-body">
+
+          <!-- LEFT: App UI mockup -->
+          <div class="setup-mockup-wrap" aria-hidden="true">
+
+            <!-- Floating chip: top-left -->
+            <div class="setup-chip setup-chip-tl">
+              <div class="sc-iconbox" style="background:#ECFDF5;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#12B76A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <span class="sc-val">40K+</span>
+                <span class="sc-lbl">Active users</span>
+              </div>
+            </div>
+
+            <!-- App card -->
+            <div class="setup-app-card">
+
+              <!-- Topbar -->
+              <div class="sac-topbar">
+                <div class="sac-dots">
+                  <div class="sac-dot" style="background:#F04438;"></div>
+                  <div class="sac-dot" style="background:#F79009;"></div>
+                  <div class="sac-dot" style="background:#12B76A;"></div>
+                </div>
+                <span class="sac-title">Snaarplock — My Vault</span>
+              </div>
+
+              <!-- Body -->
+              <div class="sac-body">
+
+                <!-- Setup complete badge -->
+                <div class="sac-progress-badge">
+                  <div class="sac-progress-icon">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span class="sac-progress-text">Setup complete — vault is active</span>
+                </div>
+
+                <!-- Vault entries -->
+                <p class="sac-vault-label">Saved passwords</p>
+
+                <div class="sac-entry">
+                  <div class="sac-entry-icon" style="background:#F0F7FF; color:#0078D4;">Gh</div>
+                  <div class="sac-entry-info">
+                    <span class="sac-entry-site">github.com</span>
+                    <span class="sac-entry-pw">••••••••••••</span>
+                  </div>
+                  <span class="sac-entry-fill">Autofill</span>
+                </div>
+
+                <div class="sac-entry">
+                  <div class="sac-entry-icon" style="background:#FFF0F0; color:#E50914;">Nf</div>
+                  <div class="sac-entry-info">
+                    <span class="sac-entry-site">netflix.com</span>
+                    <span class="sac-entry-pw">••••••••••</span>
+                  </div>
+                  <span class="sac-entry-fill">Autofill</span>
+                </div>
+
+                <div class="sac-entry">
+                  <div class="sac-entry-icon" style="background:#FFF4ED; color:#F79009;">Gm</div>
+                  <div class="sac-entry-info">
+                    <span class="sac-entry-site">gmail.com</span>
+                    <span class="sac-entry-pw">•••••••••••</span>
+                  </div>
+                  <span class="sac-entry-fill">Autofill</span>
+                </div>
+
+                <div class="sac-entry">
+                  <div class="sac-entry-icon" style="background:#F0EEFF; color:#7342E2;">Sl</div>
+                  <div class="sac-entry-info">
+                    <span class="sac-entry-site">slack.com</span>
+                    <span class="sac-entry-pw">•••••••••</span>
+                  </div>
+                  <span class="sac-entry-fill">Autofill</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Floating chip: bottom-right -->
+            <div class="setup-chip setup-chip-br">
+              <div class="sc-iconbox" style="background:#F0EEFF;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <span class="sc-val">256-bit</span>
+                <span class="sc-lbl">AES encrypted</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT: Steps -->
+          <div class="setup-right">
+
+            <p class="setup-steps-eyebrow">How it works</p>
+
+            <div class="setup-steps" role="list">
+
+              <div class="setup-step setup-step-purple" role="listitem">
+                <div class="step-icon-wrap" style="background:#D2C4F0;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div>
+                  <h3 class="setup-step-title">Create your account</h3>
+                  <p class="setup-step-desc">Sign up with your email and set one strong master password — the only one you'll ever need to remember.</p>
+                </div>
+              </div>
+
+              <div class="setup-step setup-step-blue" role="listitem">
+                <div class="step-icon-wrap" style="background:#C0D8F5;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#244FFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>
+                </div>
+                <div>
+                  <h3 class="setup-step-title">Install the browser extension</h3>
+                  <p class="setup-step-desc">Add Snaarplock to Chrome, Firefox, Safari, or Edge in one click. It sits quietly in your toolbar, ready to autofill.</p>
+                </div>
+              </div>
+
+              <div class="setup-step setup-step-green" role="listitem">
+                <div class="step-icon-wrap" style="background:#B8EAD3;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12B76A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                </div>
+                <div>
+                  <h3 class="setup-step-title">Import or save passwords</h3>
+                  <p class="setup-step-desc">Bulk-import from your browser or existing manager in seconds, or let Snaarplock save new ones as you log in.</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="setup-cta">
+              <a href="#" class="btn-setup-primary">
+                Start for free
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+
           </div>
 
         </div>
