@@ -851,19 +851,23 @@
       display: grid;
       grid-template-columns: 1.8fr 1fr 1fr;
       grid-column: 1 / -1;
-      border-radius: 20px;
-      overflow: hidden;
+      gap: 14px;
     }
 
-    .pstat { padding: 22px 22px 20px; }
+    .pstat {
+      padding: 24px 24px 22px;
+      border-radius: 20px;
+      box-shadow: 0 8px 28px rgba(25,40,55,0.10), 0 2px 6px rgba(25,40,55,0.05);
+    }
 
-    /* Cell 1: dark with horizontal layout */
+    /* Cell 1: dark with vertical layout */
     .pstat-dark { background: #192837; }
 
     .pstat-dark-inner {
       display: flex;
-      align-items: center;
-      gap: 18px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
     }
     .pstat-dark-text {
       display: flex;
@@ -892,11 +896,11 @@
 
     .pstat-big {
       font-family: var(--font-heading);
-      font-size: 1.65rem;
+      font-size: clamp(2.4rem, 3.5vw, 3.2rem);
       font-weight: 800;
       line-height: 1;
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
     .pstat-dark .pstat-big { color: #fff; }
 
@@ -911,11 +915,8 @@
     /* Cell 2: white / light */
     .pstat-mid {
       background: #F9F9F7;
-      border-left: 1px solid rgba(25,40,55,0.07);
-      border-right: 1px solid rgba(25,40,55,0.07);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
     }
     .pstat-mid .pstat-big  { color: var(--color-accent); }
     .pstat-mid .pstat-small { color: var(--text-2); }
@@ -925,7 +926,6 @@
       background: var(--color-accent);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
     }
     .pstat-hi .pstat-big  { color: #fff; }
     .pstat-hi .pstat-small { color: rgba(255,255,255,0.68); }
@@ -1088,9 +1088,8 @@
       .btn-prob-primary  { justify-content: center; }
       .btn-prob-secondary { justify-content: center; }
       .problem-chip-tr, .problem-chip-bl { display: none; }
-      .problem-stats { grid-template-columns: 1fr; border-radius: 16px; }
-      .pstat-mid { border-left: none; border-right: none; border-top: 1px solid rgba(25,40,55,0.07); border-bottom: 1px solid rgba(25,40,55,0.07); }
-      .pstat-dark-inner { gap: 14px; }
+      .problem-stats { grid-template-columns: 1fr; gap: 10px; }
+      .pstat-dark-inner { gap: 10px; }
     }
 
     /* ==========================================
