@@ -434,6 +434,19 @@
       pointer-events: none;
     }
 
+    /* Subtle white gradient at the bottom to improve trust-text legibility */
+    .hero::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 28%;
+      background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
     /* Content sits above the video */
     .hero-body {
       position: relative;
