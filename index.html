@@ -604,6 +604,480 @@
       .btn-hero-primary  { justify-content: center; }
       .btn-hero-secondary { justify-content: center; }
     }
+
+    /* ==========================================
+       TRUSTED BRANDS SECTION
+    ========================================== */
+    .brands-section {
+      background: #fff;
+      padding: 52px 0 48px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .brands-label {
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--color-text);
+      letter-spacing: 0.01em;
+      margin-bottom: 36px;
+      padding: 0 20px;
+    }
+
+    /* Fade mask on left and right edges */
+    .brands-track-wrap {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        #000 12%,
+        #000 88%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        #000 12%,
+        #000 88%,
+        transparent 100%
+      );
+    }
+
+    /* Two identical sets side by side — animation moves by -50% (one set width) */
+    .brands-track {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      will-change: transform;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .brands-track {
+        animation: brandsScroll 30s linear infinite;
+      }
+      .brands-track-wrap:hover .brands-track {
+        animation-play-state: paused;
+      }
+      @keyframes brandsScroll {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+    }
+
+    /* One set of logos (duplicated in HTML for seamless loop) */
+    .brands-set {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .brand-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 52px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      opacity: 0.42;
+      transition: opacity var(--t-fast);
+      user-select: none;
+      cursor: default;
+    }
+    .brand-item:hover { opacity: 0.72; }
+
+    /* Thin divider between brands */
+    .brands-set .brand-item + .brand-item {
+      border-left: 1px solid var(--border);
+    }
+
+    .brand-mark {
+      flex-shrink: 0;
+      color: var(--color-text);
+    }
+
+    .brand-name {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1;
+    }
+
+    /* Per-brand type treatments */
+    .b-paystack    .brand-name { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+    .b-flutterwave .brand-name { font-size: 19px; font-weight: 700; letter-spacing: -0.3px; }
+    .b-mono        .brand-name { font-size: 16px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+    .b-cowrywise   .brand-name { font-size: 19px; font-weight: 700; letter-spacing: -0.2px; }
+    .b-piggyvest   .brand-name { font-size: 19px; font-weight: 800; letter-spacing: -0.4px; }
+    .b-andela      .brand-name { font-size: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* ==========================================
+       THE PROBLEM SECTION
+    ========================================== */
+    .problem-section {
+      background: #fff;
+      padding: clamp(72px, 10vw, 120px) 0;
+    }
+
+    .problem-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 60px;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      column-gap: clamp(40px, 6vw, 80px);
+      row-gap: 44px;
+    }
+    @media (max-width: 1024px) { .problem-container { padding: 0 40px; } }
+    @media (max-width: 900px)  {
+      .problem-container {
+        grid-template-columns: 1fr;
+        padding: 0 24px;
+        column-gap: 0;
+        row-gap: 40px;
+      }
+    }
+
+    /* LEFT COLUMN */
+    .problem-left { display: flex; flex-direction: column; align-self: center; }
+
+    .problem-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #FFF1F0;
+      color: #C0392B;
+      font-family: var(--font-body);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 22px;
+      width: fit-content;
+    }
+    .problem-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #C0392B;
+      animation: pulseDot 2.2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .problem-h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+      line-height: 1.06;
+      letter-spacing: -0.022em;
+      color: #192837;
+      margin-bottom: 22px;
+    }
+    .problem-accent { color: var(--color-accent); }
+
+    .problem-body-text {
+      font-family: var(--font-body);
+      font-size: clamp(0.9rem, 1.8vw, 1rem);
+      line-height: 1.75;
+      color: var(--color-text);
+      opacity: 0.68;
+      max-width: 460px;
+      margin-bottom: 34px;
+    }
+
+    .problem-ctas {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 0;
+    }
+
+    .btn-prob-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #192837;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 13px 24px;
+      border-radius: 100px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform var(--t-fast) var(--ease-spring), filter var(--t-fast);
+    }
+    .btn-prob-primary:hover  { transform: scale(1.04); filter: brightness(1.12); }
+    .btn-prob-primary:active { transform: scale(0.97); }
+
+    .btn-prob-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text);
+      background: transparent;
+      border: 1.5px solid rgba(25,40,55,0.18);
+      border-radius: 100px;
+      padding: 12px 22px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background var(--t-fast), border-color var(--t-fast);
+    }
+    .btn-prob-secondary:hover { background: rgba(25,40,55,0.04); border-color: rgba(25,40,55,0.30); }
+
+    /* Stats bar — spans full width below both columns */
+    .problem-stats {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr;
+      grid-column: 1 / -1;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .pstat { padding: 22px 22px 20px; }
+
+    /* Cell 1: dark with horizontal layout */
+    .pstat-dark { background: #192837; }
+
+    .pstat-dark-inner {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .pstat-dark-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pstat-avatars {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .pavatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 2px solid #192837;
+      margin-left: -7px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .pavatar:first-child { margin-left: 0; }
+    .pavatar svg { display: block; }
+
+    .pstat-big {
+      font-family: var(--font-heading);
+      font-size: 1.65rem;
+      font-weight: 800;
+      line-height: 1;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .pstat-dark .pstat-big { color: #fff; }
+
+    .pstat-small {
+      font-family: var(--font-body);
+      font-size: 11px;
+      line-height: 1.45;
+      display: block;
+    }
+    .pstat-dark .pstat-small { color: rgba(255,255,255,0.55); }
+
+    /* Cell 2: white / light */
+    .pstat-mid {
+      background: #F9F9F7;
+      border-left: 1px solid rgba(25,40,55,0.07);
+      border-right: 1px solid rgba(25,40,55,0.07);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .pstat-mid .pstat-big  { color: var(--color-accent); }
+    .pstat-mid .pstat-small { color: var(--text-2); }
+
+    /* Cell 3: brand accent */
+    .pstat-hi {
+      background: var(--color-accent);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .pstat-hi .pstat-big  { color: #fff; }
+    .pstat-hi .pstat-small { color: rgba(255,255,255,0.68); }
+
+    /* RIGHT COLUMN */
+    .problem-right { position: relative; align-self: center; }
+
+    .problem-card {
+      position: relative;
+      border-radius: 24px;
+      background: linear-gradient(145deg, #EDE8F8 0%, #D6CCEE 100%);
+      padding: 28px;
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+
+    /* Inner password audit UI mockup */
+    .pcard-ui {
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px 20px 20px;
+      width: 100%;
+      max-width: 296px;
+      box-shadow: 0 12px 40px rgba(25,40,55,0.13);
+    }
+
+    .pcard-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #F0EFF8;
+    }
+    .pcard-title {
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #192837;
+    }
+    .pcard-alert-badge {
+      font-family: var(--font-body);
+      font-size: 10.5px;
+      font-weight: 700;
+      background: #FEF3F2;
+      color: #C0392B;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .pcard-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid #F5F4FB;
+    }
+    .pcard-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .pcard-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: #F4F3F9;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pcard-info { flex: 1; min-width: 0; }
+    .pcard-site {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      color: #192837;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .pcard-pw {
+      font-family: monospace;
+      font-size: 10.5px;
+      color: #B0AECC;
+      letter-spacing: 1.5px;
+      display: block;
+    }
+
+    .pcard-status {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 100px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .pcard-status.leaked { background: #FEF3F2; color: #C0392B; }
+    .pcard-status.weak   { background: #FFFAEB; color: #B45309; }
+    .pcard-status.reused { background: #FFF4ED; color: #9A3412; }
+
+    /* Floating stat chips */
+    .problem-chip {
+      position: absolute;
+      background: #fff;
+      border-radius: 14px;
+      padding: 11px 15px;
+      box-shadow: 0 8px 28px rgba(25,40,55,0.13);
+      z-index: 10;
+    }
+    .problem-chip-tr {
+      top: 20px;
+      right: -18px;
+    }
+    .problem-chip-bl {
+      bottom: 28px;
+      left: -18px;
+    }
+
+    .pchip-inner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pchip-iconbox {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pchip-iconbox-red    { background: #FEF3F2; }
+    .pchip-iconbox-purple { background: #F0EEFF; }
+
+    .pchip-val {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 800;
+      color: #192837;
+      display: block;
+      line-height: 1.15;
+    }
+    .pchip-lbl {
+      font-family: var(--font-body);
+      font-size: 10.5px;
+      color: #8B93B3;
+      display: block;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 480px) {
+      .problem-ctas { flex-direction: column; align-items: stretch; }
+      .btn-prob-primary  { justify-content: center; }
+      .btn-prob-secondary { justify-content: center; }
+      .problem-chip-tr, .problem-chip-bl { display: none; }
+      .problem-stats { grid-template-columns: 1fr; border-radius: 16px; }
+      .pstat-mid { border-left: none; border-right: none; border-top: 1px solid rgba(25,40,55,0.07); border-bottom: 1px solid rgba(25,40,55,0.07); }
+      .pstat-dark-inner { gap: 14px; }
+    }
   </style>
 </head>
 <body>
@@ -739,6 +1213,256 @@
         </div>
       </div>
 
+    </section>
+
+    <!-- ======= TRUSTED BRANDS ======= -->
+    <section class="brands-section" aria-label="Trusted by leading companies">
+
+      <p class="brands-label">Trusted by teams at</p>
+
+      <div class="brands-track-wrap">
+        <div class="brands-track" role="list" aria-label="Company logos">
+
+          <!-- Set 1 -->
+          <div class="brands-set" aria-hidden="true">
+            <div class="brand-item b-paystack">
+              <!-- Paystack checkmark mark -->
+              <svg class="brand-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="brand-name">Paystack</span>
+            </div>
+            <div class="brand-item b-flutterwave">
+              <!-- Flutterwave wave mark -->
+              <svg class="brand-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c2-4 4-6 6-6s4 8 6 8 4-6 6-6"/></svg>
+              <span class="brand-name">Flutterwave</span>
+            </div>
+            <div class="brand-item b-mono">
+              <!-- Mono circle mark -->
+              <svg class="brand-mark" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
+              <span class="brand-name">Mono</span>
+            </div>
+            <div class="brand-item b-cowrywise">
+              <!-- Cowrywise coin mark -->
+              <svg class="brand-mark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0"/></svg>
+              <span class="brand-name">Cowrywise</span>
+            </div>
+            <div class="brand-item b-piggyvest">
+              <!-- PiggyVest piggy mark -->
+              <svg class="brand-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 8a7 7 0 1 0-14 0c0 2.5 1.3 4.7 3.3 6L7 17h10l-1.3-3C17.7 12.7 19 10.5 19 8z"/><path d="M10 17v3h4v-3"/><path d="M21 12h-2"/></svg>
+              <span class="brand-name">PiggyVest</span>
+            </div>
+            <div class="brand-item b-andela">
+              <!-- Andela diamond mark -->
+              <svg class="brand-mark" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 22 12 12 22 2 12"/></svg>
+              <span class="brand-name">Andela</span>
+            </div>
+          </div>
+
+          <!-- Set 2 (identical — for seamless infinity scroll) -->
+          <div class="brands-set" aria-hidden="true">
+            <div class="brand-item b-paystack">
+              <svg class="brand-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="brand-name">Paystack</span>
+            </div>
+            <div class="brand-item b-flutterwave">
+              <svg class="brand-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c2-4 4-6 6-6s4 8 6 8 4-6 6-6"/></svg>
+              <span class="brand-name">Flutterwave</span>
+            </div>
+            <div class="brand-item b-mono">
+              <svg class="brand-mark" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
+              <span class="brand-name">Mono</span>
+            </div>
+            <div class="brand-item b-cowrywise">
+              <svg class="brand-mark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0"/></svg>
+              <span class="brand-name">Cowrywise</span>
+            </div>
+            <div class="brand-item b-piggyvest">
+              <svg class="brand-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 8a7 7 0 1 0-14 0c0 2.5 1.3 4.7 3.3 6L7 17h10l-1.3-3C17.7 12.7 19 10.5 19 8z"/><path d="M10 17v3h4v-3"/><path d="M21 12h-2"/></svg>
+              <span class="brand-name">PiggyVest</span>
+            </div>
+            <div class="brand-item b-andela">
+              <svg class="brand-mark" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 22 12 12 22 2 12"/></svg>
+              <span class="brand-name">Andela</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ======= THE PROBLEM ======= -->
+    <section class="problem-section" id="problem" aria-labelledby="problem-heading">
+      <div class="problem-container">
+
+        <!-- LEFT COLUMN -->
+        <div class="problem-left">
+
+          <span class="problem-tag">
+            <span class="problem-tag-dot" aria-hidden="true"></span>
+            The Problem
+          </span>
+
+          <h2 class="problem-h2" id="problem-heading">
+            Passwords Are<br>
+            <span class="problem-accent">Broken.</span><br>
+            And You&rsquo;re Exposed.
+          </h2>
+
+          <p class="problem-body-text">
+            The average person manages 100+ accounts — and most share the same weak password across all of them.
+            One breach ripples everywhere. Email. Banking. Work. Snaarplock exists because the current system is silently failing you.
+          </p>
+
+          <div class="problem-ctas">
+            <a href="#" class="btn-prob-primary">
+              Get protected now
+            </a>
+            <a href="#" class="btn-prob-secondary">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              See how it happens
+            </a>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="problem-right">
+          <div class="problem-card">
+
+            <!-- Password audit UI mockup -->
+            <div class="pcard-ui" role="img" aria-label="Password audit showing multiple breached and weak accounts">
+              <div class="pcard-header">
+                <span class="pcard-title">Password Audit</span>
+                <span class="pcard-alert-badge">5 Issues Found</span>
+              </div>
+
+              <div class="pcard-row">
+                <div class="pcard-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </div>
+                <div class="pcard-info">
+                  <span class="pcard-site">work.email.com</span>
+                  <span class="pcard-pw">••••••••••</span>
+                </div>
+                <span class="pcard-status leaked">Leaked</span>
+              </div>
+
+              <div class="pcard-row">
+                <div class="pcard-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#192837" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/><path d="m14 15 2 2 4-4"/></svg>
+                </div>
+                <div class="pcard-info">
+                  <span class="pcard-site">mybank.ng</span>
+                  <span class="pcard-pw">••••••</span>
+                </div>
+                <span class="pcard-status weak">Weak</span>
+              </div>
+
+              <div class="pcard-row">
+                <div class="pcard-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F04438" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div class="pcard-info">
+                  <span class="pcard-site">social-app.com</span>
+                  <span class="pcard-pw">••••••••••</span>
+                </div>
+                <span class="pcard-status leaked">Leaked</span>
+              </div>
+
+              <div class="pcard-row">
+                <div class="pcard-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F79009" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+                </div>
+                <div class="pcard-info">
+                  <span class="pcard-site">shopping-store.com</span>
+                  <span class="pcard-pw">••••••••</span>
+                </div>
+                <span class="pcard-status reused">Reused</span>
+              </div>
+
+              <div class="pcard-row">
+                <div class="pcard-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                </div>
+                <div class="pcard-info">
+                  <span class="pcard-site">work-tools.io</span>
+                  <span class="pcard-pw">••••••••••</span>
+                </div>
+                <span class="pcard-status leaked">Leaked</span>
+              </div>
+            </div>
+
+            <!-- Floating chip: top right -->
+            <div class="problem-chip problem-chip-tr" aria-hidden="true">
+              <div class="pchip-inner">
+                <div class="pchip-iconbox pchip-iconbox-red">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <div>
+                  <span class="pchip-val">3 Breaches</span>
+                  <span class="pchip-lbl">Detected in your vault</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating chip: bottom left -->
+            <div class="problem-chip problem-chip-bl" aria-hidden="true">
+              <div class="pchip-inner">
+                <div class="pchip-iconbox pchip-iconbox-purple">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                  <span class="pchip-val">$4.45M</span>
+                  <span class="pchip-lbl">Avg. breach cost</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Stats bar — spans full width below both columns -->
+        <div class="problem-stats" role="list" aria-label="Key security statistics">
+
+          <!-- Cell 1: dark — avatars side by side with number + label -->
+          <div class="pstat pstat-dark" role="listitem">
+            <div class="pstat-dark-inner">
+              <div class="pstat-avatars" aria-hidden="true">
+                <span class="pavatar" style="background:#7342E2">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <span class="pavatar" style="background:#F04438">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <span class="pavatar" style="background:#12B76A">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <span class="pavatar" style="background:#F79009">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+              </div>
+              <div class="pstat-dark-text">
+                <strong class="pstat-big">4.1B+</strong>
+                <span class="pstat-small">Passwords leaked last year alone</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cell 2: light with accent number -->
+          <div class="pstat pstat-mid" role="listitem">
+            <strong class="pstat-big">81%</strong>
+            <span class="pstat-small">Of breaches involve<br>stolen credentials</span>
+          </div>
+
+          <!-- Cell 3: brand accent -->
+          <div class="pstat pstat-hi" role="listitem">
+            <strong class="pstat-big">30K</strong>
+            <span class="pstat-small">New sites hacked<br>every single day</span>
+          </div>
+
+        </div>
+
+      </div>
     </section>
 
   </main>
