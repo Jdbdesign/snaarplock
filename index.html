@@ -3380,6 +3380,53 @@
     .btn-gs-primary:hover  { transform: scale(1.04); filter: brightness(1.1); }
     .btn-gs-primary:active { transform: scale(0.97); }
 
+    /* ── Shine hover effect — all primary buttons ── */
+    .btn-nav-primary,
+    .sheet-btn-primary,
+    .btn-hero-primary,
+    .btn-prob-primary,
+    .btn-setup-primary,
+    .btn-cmp-cta,
+    .btn-gs-primary {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-nav-primary::before,
+    .sheet-btn-primary::before,
+    .btn-hero-primary::before,
+    .btn-prob-primary::before,
+    .btn-setup-primary::before,
+    .btn-cmp-cta::before,
+    .btn-gs-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background-image: linear-gradient(
+        45deg,
+        transparent 25%,
+        rgba(255, 255, 255, 0.55) 50%,
+        transparent 75%
+      );
+      background-size: 250% 250%;
+      background-position: 200% 0;
+      background-repeat: no-repeat;
+      transition: background-position 1.2s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .btn-nav-primary:hover::before,
+    .sheet-btn-primary:hover::before,
+    .btn-hero-primary:hover::before,
+    .btn-prob-primary:hover::before,
+    .btn-setup-primary:hover::before,
+    .btn-cmp-cta:hover::before,
+    .btn-gs-primary:hover::before {
+      background-position: -100% 0;
+    }
+
     .btn-gs-secondary {
       display: inline-flex;
       align-items: center;
@@ -3966,7 +4013,7 @@
                 <span class="pavatar"><img src="Ellipse 4.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></span>
               </div>
               <div class="pstat-dark-text">
-                <strong class="pstat-big">4.1B+</strong>
+                <strong class="pstat-big" data-counter data-from="1.0" data-to="4.1" data-suffix="B+" data-decimals="1" data-duration="3200">4.1B+</strong>
                 <span class="pstat-small">Passwords leaked last year alone</span>
               </div>
             </div>
@@ -3974,13 +4021,13 @@
 
           <!-- Cell 2: light with accent number -->
           <div class="pstat pstat-mid prob-fade-up prob-d6" role="listitem">
-            <strong class="pstat-big">81%</strong>
+            <strong class="pstat-big" data-counter data-from="10" data-to="81" data-suffix="%" data-decimals="0" data-duration="2600">81%</strong>
             <span class="pstat-small">Of breaches involve<br>stolen credentials</span>
           </div>
 
           <!-- Cell 3: brand accent -->
           <div class="pstat pstat-hi prob-fade-up prob-d7" role="listitem">
-            <strong class="pstat-big">30K</strong>
+            <strong class="pstat-big" data-counter data-from="5" data-to="30" data-suffix="K" data-decimals="0" data-duration="2800">30K</strong>
             <span class="pstat-small">New sites hacked<br>every single day</span>
           </div>
 
@@ -5538,6 +5585,58 @@
       }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
 
       incEls.forEach(function (el) { incObserver.observe(el); });
+    }());
+
+    // Stat counter animations — triggered once when cards enter viewport
+    (function () {
+      var counters = document.querySelectorAll('[data-counter]');
+      if (!counters.length) return;
+
+      function easeOutQuart(t) {
+        return 1 - Math.pow(1 - t, 4);
+      }
+
+      function animateCounter(el) {
+        var from     = parseFloat(el.getAttribute('data-from'));
+        var to       = parseFloat(el.getAttribute('data-to'));
+        var suffix   = el.getAttribute('data-suffix') || '';
+        var decimals = parseInt(el.getAttribute('data-decimals'), 10) || 0;
+        var duration = parseInt(el.getAttribute('data-duration'), 10) || 1500;
+        var start    = null;
+
+        function step(ts) {
+          if (!start) start = ts;
+          var elapsed  = ts - start;
+          var progress = Math.min(elapsed / duration, 1);
+          var eased    = easeOutQuart(progress);
+          var current  = from + (to - from) * eased;
+          el.textContent = current.toFixed(decimals) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      if ('IntersectionObserver' in window) {
+        var counterObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              counterObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.4 });
+
+        counters.forEach(function (el) { counterObserver.observe(el); });
+      } else {
+        // Fallback: just show final values
+        counters.forEach(function (el) {
+          var to       = parseFloat(el.getAttribute('data-to'));
+          var suffix   = el.getAttribute('data-suffix') || '';
+          var decimals = parseInt(el.getAttribute('data-decimals'), 10) || 0;
+          el.textContent = to.toFixed(decimals) + suffix;
+        });
+      }
     }());
   </script>
 
