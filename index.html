@@ -1960,6 +1960,271 @@
       .security-grid { grid-template-columns: 1fr; }
       .security-text-block { grid-column: auto; }
     }
+
+    /* ==========================================
+       PRICING SECTION
+    ========================================== */
+    .pricing-section {
+      background: #fff;
+      padding: clamp(72px, 10vw, 120px) 0;
+    }
+
+    .pricing-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 60px);
+    }
+
+    .pricing-top {
+      text-align: center;
+      margin-bottom: clamp(40px, 5vw, 56px);
+    }
+
+    .pricing-h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.9rem, 3.8vw, 3rem);
+      line-height: 1.06;
+      letter-spacing: -0.022em;
+      color: #192837;
+      margin-bottom: 12px;
+    }
+
+    .pricing-sub {
+      font-family: var(--font-body);
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      color: var(--text-2);
+      opacity: 0.72;
+      line-height: 1.65;
+    }
+
+    .pricing-toggle-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .pricing-toggle {
+      display: inline-flex;
+      align-items: center;
+      background: #F4F5F9;
+      border-radius: var(--r-full);
+      padding: 4px;
+      gap: 2px;
+    }
+
+    .ptoggle-btn {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 22px;
+      border-radius: var(--r-full);
+      border: none;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text-2);
+      transition: background var(--t-fast) var(--ease-out), color var(--t-fast), box-shadow var(--t-fast);
+      letter-spacing: 0.02em;
+    }
+
+    .ptoggle-btn.active {
+      background: var(--color-accent);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(115,66,226,0.28);
+    }
+
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .pricing-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px 26px 28px;
+      display: flex;
+      flex-direction: column;
+      border: 1.5px solid var(--border);
+      transition: box-shadow var(--t-normal) var(--ease-out), transform var(--t-normal) var(--ease-out);
+      position: relative;
+    }
+
+    .pricing-card:hover {
+      box-shadow: 0 8px 32px rgba(13,19,51,0.09);
+      transform: translateY(-3px);
+    }
+
+    .pricing-card-popular {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      box-shadow: 0 12px 40px rgba(115,66,226,0.28);
+    }
+
+    .pricing-card-popular:hover {
+      box-shadow: 0 16px 56px rgba(115,66,226,0.36);
+      transform: translateY(-4px);
+    }
+
+    .pricing-popular-badge {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255,255,255,0.20);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--r-full);
+      margin-bottom: 18px;
+      width: fit-content;
+    }
+
+    .pricing-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .pricing-amount {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1;
+      color: #192837;
+      letter-spacing: -0.02em;
+      transition: opacity 0.15s;
+    }
+
+    .pricing-card-popular .pricing-amount { color: #fff; }
+
+    .pricing-period {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-3);
+      padding-bottom: 2px;
+    }
+
+    .pricing-card-popular .pricing-period { color: rgba(255,255,255,0.65); }
+
+    .pricing-plan-name {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #192837;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .pricing-card-popular .pricing-plan-name { color: #fff; }
+
+    .pricing-plan-desc {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--text-2);
+      line-height: 1.6;
+      opacity: 0.75;
+      margin-bottom: 22px;
+    }
+
+    .pricing-card-popular .pricing-plan-desc {
+      color: rgba(255,255,255,0.72);
+      opacity: 1;
+    }
+
+    .pricing-divider {
+      height: 1px;
+      background: rgba(25,40,55,0.07);
+      margin-bottom: 20px;
+    }
+
+    .pricing-card-popular .pricing-divider { background: rgba(255,255,255,0.18); }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      flex: 1;
+    }
+
+    .pricing-feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: #192837;
+      line-height: 1.4;
+    }
+
+    .pricing-card-popular .pricing-feature { color: rgba(255,255,255,0.92); }
+
+    .pf-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(115,66,226,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pricing-card-popular .pf-check { background: rgba(255,255,255,0.20); }
+
+    .pricing-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 13px 24px;
+      border-radius: var(--r-full);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform var(--t-fast) var(--ease-spring), filter var(--t-fast), background var(--t-fast);
+    }
+
+    .pricing-btn-outline {
+      background: transparent;
+      color: #192837;
+      border: 1.5px solid rgba(25,40,55,0.18);
+    }
+
+    .pricing-btn-outline:hover {
+      background: rgba(25,40,55,0.05);
+      transform: scale(1.02);
+    }
+
+    .pricing-btn-primary {
+      background: #fff;
+      color: var(--color-accent);
+    }
+
+    .pricing-btn-primary:hover {
+      filter: brightness(0.97);
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 900px) {
+      .pricing-cards {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .pricing-cards { max-width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -2827,6 +3092,131 @@
       </div>
     </section>
 
+    <!-- ======= PRICING ======= -->
+    <section class="pricing-section" id="pricing" aria-labelledby="pricing-heading">
+      <div class="pricing-container">
+
+        <div class="pricing-top">
+          <h2 class="pricing-h2" id="pricing-heading">Simple, transparent pricing</h2>
+          <p class="pricing-sub">No contracts. No surprise fees.</p>
+          <div class="pricing-toggle-wrap">
+            <div class="pricing-toggle" role="group" aria-label="Billing period">
+              <button class="ptoggle-btn active" id="btn-monthly" aria-pressed="true">Monthly</button>
+              <button class="ptoggle-btn" id="btn-yearly" aria-pressed="false">Yearly</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-cards">
+
+          <!-- Free -->
+          <div class="pricing-card">
+            <div class="pricing-price-row">
+              <span class="pricing-amount" data-monthly="$0" data-yearly="$0">$0</span>
+              <span class="pricing-period">/month</span>
+            </div>
+            <h3 class="pricing-plan-name">Free</h3>
+            <p class="pricing-plan-desc">Perfect for individuals getting started with secure password management.</p>
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features" aria-label="Free plan features">
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                50 saved passwords
+              </li>
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                1 device sync
+              </li>
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Browser extension
+              </li>
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Password generator
+              </li>
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Standard support
+              </li>
+            </ul>
+            <a href="#" class="pricing-btn pricing-btn-outline">Get started free</a>
+          </div>
+
+          <!-- Pro (Most Popular) -->
+          <div class="pricing-card pricing-card-popular">
+            <span class="pricing-popular-badge">Most Popular</span>
+            <div class="pricing-price-row">
+              <span class="pricing-amount" data-monthly="$4" data-yearly="$3">$4</span>
+              <span class="pricing-period">/month</span>
+            </div>
+            <h3 class="pricing-plan-name">Pro</h3>
+            <p class="pricing-plan-desc">For power users who want full protection across unlimited devices and accounts.</p>
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features" aria-label="Pro plan features">
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Unlimited passwords
+              </li>
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Unlimited device sync
+              </li>
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Breach monitoring
+              </li>
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Secure vault sharing
+              </li>
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Priority support
+              </li>
+            </ul>
+            <a href="#" class="pricing-btn pricing-btn-primary">Upgrade</a>
+          </div>
+
+          <!-- Teams -->
+          <div class="pricing-card">
+            <div class="pricing-price-row">
+              <span class="pricing-amount" data-monthly="$8" data-yearly="$6">$8</span>
+              <span class="pricing-period">/user/mo</span>
+            </div>
+            <h3 class="pricing-plan-name">Teams</h3>
+            <p class="pricing-plan-desc">Built for teams that need centralized security management and admin controls.</p>
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features" aria-label="Teams plan features">
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Everything in Pro
+              </li>
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Team shared vault
+              </li>
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Admin dashboard
+              </li>
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                SSO &amp; SAML support
+              </li>
+              <li class="pricing-feature">
+                <span class="pf-check" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                24/7 dedicated support
+              </li>
+            </ul>
+            <a href="#" class="pricing-btn pricing-btn-outline">Upgrade</a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <script>
@@ -2863,6 +3253,29 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && sheet.classList.contains('open')) closeSheet();
     });
+
+    // Pricing toggle — monthly / yearly
+    const btnMonthly    = document.getElementById('btn-monthly');
+    const btnYearly     = document.getElementById('btn-yearly');
+    const priceAmounts  = document.querySelectorAll('.pricing-amount[data-monthly]');
+
+    function setPricingPeriod(period) {
+      priceAmounts.forEach(el => {
+        el.style.opacity = '0';
+        setTimeout(() => {
+          el.textContent = el.dataset[period];
+          el.style.opacity = '1';
+        }, 100);
+      });
+      const isMonthly = period === 'monthly';
+      btnMonthly.classList.toggle('active', isMonthly);
+      btnMonthly.setAttribute('aria-pressed', String(isMonthly));
+      btnYearly.classList.toggle('active', !isMonthly);
+      btnYearly.setAttribute('aria-pressed', String(!isMonthly));
+    }
+
+    btnMonthly.addEventListener('click', () => setPricingPeriod('monthly'));
+    btnYearly.addEventListener('click',  () => setPricingPeriod('yearly'));
   </script>
 
 </body>
