@@ -1677,6 +1677,308 @@
     }
 
     /* ==========================================
+       BENTO — INTERACTIVE CARD ANIMATIONS
+    ========================================== */
+
+    /* ─── 1. Password Generator ─── */
+    .inc-pw-widget {
+      background: #fff;
+      border-radius: 14px;
+      padding: 13px 14px 11px;
+      box-shadow: 0 4px 22px rgba(25,40,55,0.09);
+      width: 100%;
+      max-width: 208px;
+    }
+    .inc-pw-whead { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; }
+    .inc-pw-wicon {
+      width: 26px; height: 26px; border-radius: 8px;
+      background: linear-gradient(135deg,#7342E2,#a87af7);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .inc-pw-wlbl { font-family: var(--font-body); font-size: 11px; font-weight: 600; color: #192837; }
+    .inc-pw-wslots {
+      background: #F4F5F9; border-radius: 7px; padding: 7px 10px;
+      font-family: 'SF Mono','Fira Code','Courier New',monospace;
+      font-size: 11px; color: #192837; letter-spacing: 0.06em;
+      display: flex; align-items: center; min-height: 28px; overflow: hidden;
+    }
+    .inc-pw-ch { display: inline-block; }
+    .inc-pw-ch.cycling { color: #7342E2; }
+    .inc-pw-ch.locked { color: #192837; animation: incPwLockIn 0.2s ease both; }
+    @keyframes incPwLockIn {
+      from { transform: translateY(-5px); opacity: 0.3; color: #7342E2; }
+      to   { transform: translateY(0);    opacity: 1;   color: #192837; }
+    }
+    .inc-pw-wbars { display: flex; gap: 4px; margin-top: 8px; }
+    .inc-pw-wseg { height: 3.5px; border-radius: 2px; background: #E2E6F3; flex: 1; overflow: hidden; position: relative; }
+    .inc-pw-wfill {
+      position: absolute; inset: 0; width: 0%;
+      background: #22C55E; border-radius: 2px;
+      transition: width 0.45s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .inc-pw-wfoot { display: flex; align-items: center; justify-content: space-between; margin-top: 7px; }
+    .inc-pw-wstr {
+      font-family: var(--font-body); font-size: 9px; font-weight: 700;
+      color: #22C55E; text-transform: uppercase; letter-spacing: 0.07em;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .inc-pw-wstr.vis { opacity: 1; }
+    .inc-pw-wbits {
+      font-family: var(--font-body); font-size: 9px; color: #8B93B3;
+      opacity: 0; transition: opacity 0.3s ease 0.15s;
+    }
+    .inc-pw-wbits.vis { opacity: 1; }
+
+    /* ─── 2. Center Card: Orbit stage ─── */
+    .inc-device-wrap {
+      flex: 1; width: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 8px 0 6px; gap: 10px;
+    }
+    .inc-orbit-stage {
+      position: relative; width: 228px; height: 228px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .inc-orbit-ring {
+      position: absolute; border-radius: 50%;
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      pointer-events: none;
+    }
+    .inc-orbit-ring-a { width: 148px; height: 148px; border: 1.5px solid rgba(115,66,226,0.16); }
+    .inc-orbit-ring-b { width: 200px; height: 200px; border: 1px dashed rgba(115,66,226,0.09); }
+    .inc-orbit-arm {
+      position: absolute; top: 50%; left: 50%;
+      width: 0; height: 0; transform-origin: 0 0; pointer-events: none;
+    }
+    .inc-orbit-arm-1 { animation: incOrbitSpin 5s    linear infinite; }
+    .inc-orbit-arm-2 { animation: incOrbitSpin 7.5s  linear infinite reverse; }
+    .inc-orbit-arm-3 { animation: incOrbitSpin 6.2s  linear infinite; animation-delay: -1.8s; }
+    @keyframes incOrbitSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .inc-orbit-dot { position: absolute; border-radius: 50%; }
+    .inc-orbit-dot-1 {
+      width: 11px; height: 11px; top: -5.5px; left: 74px;
+      background: #7342E2; box-shadow: 0 0 8px rgba(115,66,226,0.65);
+    }
+    .inc-orbit-dot-2 {
+      width: 9px; height: 9px; top: -4.5px; left: 100px;
+      background: #244FFC; box-shadow: 0 0 7px rgba(36,79,252,0.55);
+    }
+    .inc-orbit-dot-3 {
+      width: 8px; height: 8px; top: -4px; left: 86px;
+      background: #12B76A; box-shadow: 0 0 7px rgba(18,183,106,0.55);
+    }
+    .inc-pulse-halo {
+      position: absolute; border-radius: 50%;
+      top: 50%; left: 50%;
+      border: 1.5px solid rgba(115,66,226,0.6);
+      pointer-events: none; opacity: 0;
+      width: 90px; height: 90px;
+      transform: translate(-50%,-50%) scale(0.5);
+    }
+    .inc-pulse-halo-a { animation: incHaloOut 3.6s ease-out infinite; }
+    .inc-pulse-halo-b { animation: incHaloOut 3.6s ease-out 1.2s  infinite; }
+    .inc-pulse-halo-c { animation: incHaloOut 3.6s ease-out 2.4s  infinite; }
+    @keyframes incHaloOut {
+      0%   { opacity: 0.75; transform: translate(-50%,-50%) scale(0.55); }
+      100% { opacity: 0;    transform: translate(-50%,-50%) scale(2.8); }
+    }
+
+    /* Sync feed */
+    .inc-sync-feed { width: 100%; height: 44px; position: relative; overflow: hidden; }
+    .inc-sync-row {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; gap: 7px;
+      background: #fff; border: 1px solid rgba(25,40,55,0.07);
+      border-radius: 10px; padding: 0 10px;
+      opacity: 0; transform: translateY(-110%);
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .inc-sync-row.active { opacity: 1; transform: translateY(0); }
+    .inc-sync-row.exit   {
+      opacity: 0; transform: translateY(110%);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .inc-sync-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .inc-sync-label {
+      font-family: var(--font-body); font-size: 10.5px; font-weight: 500;
+      color: #192837; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .inc-sync-badge {
+      font-family: var(--font-body); font-size: 8.5px; font-weight: 700;
+      color: #22C55E; background: #ECFDF5;
+      border-radius: 4px; padding: 2px 6px;
+      letter-spacing: 0.06em; text-transform: uppercase; flex-shrink: 0;
+    }
+
+    /* ─── 3. Autofill Demo ─── */
+    .inc-af-widget {
+      width: 100%; max-width: 206px; background: #fff;
+      border-radius: 12px; box-shadow: 0 4px 20px rgba(25,40,55,0.09);
+      overflow: hidden;
+    }
+    .inc-af-topbar {
+      background: #EFEFEF; padding: 6px 10px;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .inc-af-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .inc-af-url {
+      flex: 1; background: #fff; border-radius: 3px;
+      padding: 2px 6px; font-size: 8.5px; color: #8B93B3;
+      font-family: var(--font-body); margin-left: 4px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .inc-af-body { padding: 10px 11px 9px; }
+    .inc-af-fwrap { margin-bottom: 7px; }
+    .inc-af-lbl {
+      font-size: 8px; color: #8B93B3; font-family: var(--font-body);
+      margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .inc-af-field {
+      background: #F4F5F9; border: 1.5px solid transparent; border-radius: 6px;
+      padding: 5px 8px; font-size: 10px; font-family: var(--font-body); color: #192837;
+      min-height: 26px; display: flex; align-items: center;
+      transition: border-color 0.22s ease, background 0.22s ease;
+      gap: 4px;
+    }
+    .inc-af-field.focus { border-color: #7342E2; background: rgba(115,66,226,0.03); }
+    .inc-af-field.done  { border-color: rgba(34,197,94,0.5); background: rgba(34,197,94,0.04); }
+    .inc-af-ftext { flex: 1; white-space: nowrap; overflow: hidden; }
+    .inc-af-cursor {
+      display: none; width: 1.5px; height: 11px; background: #7342E2;
+      border-radius: 1px; flex-shrink: 0;
+      animation: incCurBlink 0.85s step-end infinite;
+    }
+    .inc-af-cursor.on { display: block; }
+    @keyframes incCurBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .inc-af-tick {
+      width: 15px; height: 15px; border-radius: 50%; background: #22C55E;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; opacity: 0; transform: scale(0.4);
+      transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .inc-af-tick.show { opacity: 1; transform: scale(1); }
+    .inc-af-badge {
+      display: flex; align-items: center; gap: 4px;
+      background: linear-gradient(135deg,#7342E2,#a87af7);
+      border-radius: 5px; padding: 5px 9px;
+      font-size: 9px; font-weight: 700; color: #fff;
+      font-family: var(--font-body); letter-spacing: 0.02em; margin-top: 4px;
+      opacity: 0; transform: translateY(5px);
+      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.22,1,0.36,1);
+    }
+    .inc-af-badge.show { opacity: 1; transform: translateY(0); }
+
+    /* ─── 4. Secure Sharing ─── */
+    .inc-share-widget { width: 100%; max-width: 214px; }
+    .inc-share-avs { display: flex; align-items: center; margin-bottom: 9px; }
+    .inc-share-av {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 2.5px solid #F4F5F9;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; opacity: 0;
+      transform: scale(0.3) translateX(-6px);
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .inc-share-av-1 { background: linear-gradient(135deg,#7342E2,#a87af7); margin-right:-10px; z-index:4; }
+    .inc-share-av-2 { background: linear-gradient(135deg,#244FFC,#7B9AFD); margin-right:-10px; z-index:3; }
+    .inc-share-av-3 { background: linear-gradient(135deg,#12B76A,#4ade80); margin-right:8px;   z-index:2; }
+    .inc-share-av.pop { opacity: 1; transform: scale(1) translateX(0); }
+    .inc-share-av-add {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: #fff; border: 1.5px dashed #C8CEEA;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; z-index:1; opacity: 0; transform: scale(0.3);
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .inc-share-av-add.pop { opacity: 1; transform: scale(1); }
+    .inc-share-link-card {
+      background: #fff; border: 1.5px solid #E2E6F3; border-radius: 9px;
+      padding: 7px 10px; display: flex; align-items: center; gap: 7px;
+      margin-bottom: 6px; opacity: 0; transform: translateY(7px);
+      transition: opacity 0.36s ease, transform 0.36s cubic-bezier(0.22,1,0.36,1);
+    }
+    .inc-share-link-card.show { opacity: 1; transform: translateY(0); }
+    .inc-share-link-icon {
+      width: 20px; height: 20px; border-radius: 5px;
+      background: linear-gradient(135deg,#7342E2,#a87af7);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .inc-share-link-meta { flex: 1; min-width: 0; }
+    .inc-share-link-url {
+      font-family: monospace; font-size: 9px; color: #8B93B3;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; margin-bottom: 2px;
+    }
+    .inc-share-enc {
+      font-family: var(--font-body); font-size: 8px; color: #22C55E;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .inc-share-expiry {
+      display: flex; align-items: center; gap: 6px;
+      font-family: var(--font-body); font-size: 10px;
+      color: #F79009; font-weight: 500;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .inc-share-expiry.show { opacity: 1; }
+    .inc-share-exp-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #F79009; flex-shrink: 0;
+      animation: incExpPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes incExpPulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.35; transform:scale(0.6); }
+    }
+
+    /* ─── 5. Zero-Knowledge Flow ─── */
+    .inc-zk-widget { width: 100%; max-width: 214px; }
+    .inc-zk-flow { display: flex; flex-direction: column; gap: 5px; margin-bottom: 8px; }
+    .inc-zk-step { display: flex; align-items: center; gap: 7px; }
+    .inc-zk-tag {
+      padding: 5px 10px; border-radius: 7px;
+      font-size: 10px; font-weight: 700; font-family: var(--font-body);
+      letter-spacing: 0.03em; position: relative; overflow: hidden;
+    }
+    .inc-zk-tag::after {
+      content: '';
+      position: absolute; top: 0; left: -80%; width: 50%; height: 100%;
+      background: linear-gradient(90deg,transparent,rgba(255,255,255,0.55),transparent);
+      animation: incZkShimmer 3s ease-in-out infinite;
+    }
+    @keyframes incZkShimmer { 0%{left:-70%} 60%,100%{left:130%} }
+    .inc-zk-plain  { background: #F4F5F9; color: #192837; }
+    .inc-zk-enc    { background: linear-gradient(135deg,rgba(115,66,226,0.13),rgba(115,66,226,0.07)); color: #7342E2; border: 1px solid rgba(115,66,226,0.22); }
+    .inc-zk-server { background: #FEF3F2; color: #C0392B; border: 1px solid rgba(240,68,56,0.18); }
+    .inc-zk-arrow  { flex-shrink: 0; color: #C8CEEA; }
+    .inc-zk-shield {
+      display: flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg,rgba(115,66,226,0.08),rgba(115,66,226,0.04));
+      border: 1px solid rgba(115,66,226,0.18); border-radius: 9px; padding: 8px 11px;
+    }
+    .inc-zk-shield-icon {
+      width: 22px; height: 22px; border-radius: 6px;
+      background: linear-gradient(135deg,#7342E2,#a87af7);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      animation: incShieldGlow 3.4s ease-in-out infinite;
+    }
+    @keyframes incShieldGlow {
+      0%,100% { box-shadow: 0 0 0 0 rgba(115,66,226,0.5); }
+      50%      { box-shadow: 0 0 0 7px rgba(115,66,226,0); }
+    }
+    .inc-zk-shield-text {
+      font-family: var(--font-body); font-size: 9.5px;
+      font-weight: 600; color: #7342E2; line-height: 1.45;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .inc-orbit-arm-1, .inc-orbit-arm-2, .inc-orbit-arm-3,
+      .inc-pulse-halo-a, .inc-pulse-halo-b, .inc-pulse-halo-c,
+      .inc-zk-shield-icon { animation: none !important; }
+      .inc-zk-tag::after { display: none; }
+    }
+
+    /* ==========================================
        HOW WE COMPARE SECTION
     ========================================== */
     .compare-section {
@@ -3646,19 +3948,23 @@
             <h3 class="inc-card-title">Password Generator</h3>
             <p class="inc-card-desc">Creates strong, unique passwords for every site you visit.</p>
             <div class="inc-card-visual">
-              <div style="background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 4px 20px rgba(25,40,55,0.10);width:100%;max-width:210px;">
-                <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
-                  <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#7342E2,#a87af7);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
+              <div class="inc-pw-widget" id="incPwWidget">
+                <div class="inc-pw-whead">
+                  <div class="inc-pw-wicon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
                   </div>
-                  <span style="font-size:11.5px;font-weight:600;color:#192837;font-family:var(--font-body);">New password ready</span>
+                  <span class="inc-pw-wlbl" id="incPwLbl">Generating…</span>
                 </div>
-                <div style="background:#F4F5F9;border-radius:7px;padding:7px 10px;font-family:monospace;font-size:11px;color:#192837;letter-spacing:0.05em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">Kx9!mP#2nQ&amp;vRs7@</div>
-                <div style="display:flex;gap:4px;margin-top:9px;">
-                  <div style="height:4px;border-radius:2px;background:#22C55E;flex:1;"></div>
-                  <div style="height:4px;border-radius:2px;background:#22C55E;flex:1;"></div>
-                  <div style="height:4px;border-radius:2px;background:#22C55E;flex:1;"></div>
-                  <div style="height:4px;border-radius:2px;background:#22C55E;flex:1;"></div>
+                <div class="inc-pw-wslots" id="incPwSlots" aria-live="polite" aria-label="Generated password"></div>
+                <div class="inc-pw-wbars">
+                  <div class="inc-pw-wseg"><div class="inc-pw-wfill" id="incPwB0"></div></div>
+                  <div class="inc-pw-wseg"><div class="inc-pw-wfill" id="incPwB1"></div></div>
+                  <div class="inc-pw-wseg"><div class="inc-pw-wfill" id="incPwB2"></div></div>
+                  <div class="inc-pw-wseg"><div class="inc-pw-wfill" id="incPwB3"></div></div>
+                </div>
+                <div class="inc-pw-wfoot">
+                  <span class="inc-pw-wstr" id="incPwStr">Strong</span>
+                  <span class="inc-pw-wbits" id="incPwBits">128-bit entropy</span>
                 </div>
               </div>
             </div>
@@ -3669,18 +3975,35 @@
             <h3 class="inc-center-title">Auto Sync</h3>
             <p class="inc-center-desc">We ensure your vault is always up to date. Every password, note, and card — synced in real time.</p>
             <div class="inc-device-wrap">
-              <div class="inc-device" aria-hidden="true">
-                <svg width="88" height="88" viewBox="0 0 88 88" fill="none" aria-hidden="true">
-                  <circle cx="44" cy="44" r="38" stroke="rgba(255,255,255,0.10)" stroke-width="1.5"/>
-                  <circle cx="44" cy="44" r="26" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
-                  <rect x="31" y="41" width="26" height="18" rx="3.5" fill="rgba(255,255,255,0.90)"/>
-                  <path d="M36 41V35.5a8 8 0 0 1 16 0V41" stroke="rgba(255,255,255,0.90)" stroke-width="2.5" stroke-linecap="round"/>
-                  <circle cx="44" cy="50" r="2.5" fill="#7342E2"/>
-                  <circle cx="20" cy="44" r="4" fill="rgba(115,66,226,0.6)"/>
-                  <circle cx="68" cy="44" r="4" fill="rgba(115,66,226,0.6)"/>
-                  <circle cx="44" cy="18" r="3" fill="rgba(255,255,255,0.35)"/>
-                  <circle cx="44" cy="70" r="3" fill="rgba(255,255,255,0.35)"/>
-                </svg>
+              <div class="inc-orbit-stage" aria-hidden="true">
+                <div class="inc-orbit-ring inc-orbit-ring-a"></div>
+                <div class="inc-orbit-ring inc-orbit-ring-b"></div>
+                <div class="inc-pulse-halo inc-pulse-halo-a"></div>
+                <div class="inc-pulse-halo inc-pulse-halo-b"></div>
+                <div class="inc-pulse-halo inc-pulse-halo-c"></div>
+                <div class="inc-orbit-arm inc-orbit-arm-1"><div class="inc-orbit-dot inc-orbit-dot-1"></div></div>
+                <div class="inc-orbit-arm inc-orbit-arm-2"><div class="inc-orbit-dot inc-orbit-dot-2"></div></div>
+                <div class="inc-orbit-arm inc-orbit-arm-3"><div class="inc-orbit-dot inc-orbit-dot-3"></div></div>
+                <div class="inc-device">
+                  <svg width="88" height="88" viewBox="0 0 88 88" fill="none" aria-hidden="true">
+                    <circle cx="44" cy="44" r="38" stroke="rgba(255,255,255,0.10)" stroke-width="1.5"/>
+                    <circle cx="44" cy="44" r="26" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                    <rect x="31" y="41" width="26" height="18" rx="3.5" fill="rgba(255,255,255,0.90)"/>
+                    <path d="M36 41V35.5a8 8 0 0 1 16 0V41" stroke="rgba(255,255,255,0.90)" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="44" cy="50" r="2.5" fill="#7342E2"/>
+                    <circle cx="20" cy="44" r="4" fill="rgba(115,66,226,0.6)"/>
+                    <circle cx="68" cy="44" r="4" fill="rgba(115,66,226,0.6)"/>
+                    <circle cx="44" cy="18" r="3" fill="rgba(255,255,255,0.35)"/>
+                    <circle cx="44" cy="70" r="3" fill="rgba(255,255,255,0.35)"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="inc-sync-feed" aria-live="polite" aria-label="Recently synced items">
+                <div class="inc-sync-row"><div class="inc-sync-dot" style="background:#7342E2;"></div><span class="inc-sync-label">github.com</span><span class="inc-sync-badge">Synced</span></div>
+                <div class="inc-sync-row"><div class="inc-sync-dot" style="background:#244FFC;"></div><span class="inc-sync-label">spotify.com</span><span class="inc-sync-badge">Synced</span></div>
+                <div class="inc-sync-row"><div class="inc-sync-dot" style="background:#12B76A;"></div><span class="inc-sync-label">amazon.com</span><span class="inc-sync-badge">Synced</span></div>
+                <div class="inc-sync-row"><div class="inc-sync-dot" style="background:#F79009;"></div><span class="inc-sync-label">slack.com</span><span class="inc-sync-badge">Synced</span></div>
+                <div class="inc-sync-row"><div class="inc-sync-dot" style="background:#F04438;"></div><span class="inc-sync-label">netflix.com</span><span class="inc-sync-badge">Synced</span></div>
               </div>
             </div>
             <div class="inc-center-bottom">
@@ -3701,40 +4024,38 @@
             <h3 class="inc-card-title">Browser Extensions</h3>
             <p class="inc-card-desc">One-click autofill across Chrome, Firefox, Safari, and Edge.</p>
             <div class="inc-card-visual">
-              <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;">
-                <!-- Chrome -->
-                <div style="width:46px;height:46px;border-radius:12px;background:#fff;box-shadow:0 2px 12px rgba(25,40,55,0.10);display:flex;align-items:center;justify-content:center;" aria-label="Chrome">
-                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
-                    <circle cx="13" cy="13" r="5" fill="#4285F4"/>
-                    <path d="M13 8h11M5.5 21.5 8.5 16M20.5 21.5H5.5" stroke-width="4.5" stroke-linecap="round" stroke="#FBBC04"/>
-                    <path d="M13 8h11" stroke="#EA4335" stroke-width="4.5" stroke-linecap="round"/>
-                    <path d="M24 13a11 11 0 1 1-22 0 11 11 0 0 1 22 0z" stroke="#E8EAED" stroke-width="1"/>
-                  </svg>
+              <div class="inc-af-widget" id="incAfWidget">
+                <div class="inc-af-topbar">
+                  <div class="inc-af-dot" style="background:#F04438;"></div>
+                  <div class="inc-af-dot" style="background:#F79009;"></div>
+                  <div class="inc-af-dot" style="background:#12B76A;"></div>
+                  <span class="inc-af-url">app.github.com/login</span>
                 </div>
-                <!-- Firefox -->
-                <div style="width:46px;height:46px;border-radius:12px;background:#fff;box-shadow:0 2px 12px rgba(25,40,55,0.10);display:flex;align-items:center;justify-content:center;" aria-label="Firefox">
-                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
-                    <circle cx="13" cy="13" r="10" fill="#FF9500" opacity=".18"/>
-                    <circle cx="13" cy="13" r="6" fill="#FF6611"/>
-                    <path d="M13 5c5 0 8.5 3 9 7.5-1-2-3.5-2.5-6-1.5" fill="#FF9500"/>
-                  </svg>
-                </div>
-                <!-- Safari -->
-                <div style="width:46px;height:46px;border-radius:12px;background:#fff;box-shadow:0 2px 12px rgba(25,40,55,0.10);display:flex;align-items:center;justify-content:center;" aria-label="Safari">
-                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
-                    <circle cx="13" cy="13" r="10" stroke="#007AFF" stroke-width="1.5"/>
-                    <line x1="13" y1="5" x2="13" y2="13" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="13" y1="13" x2="18" y2="18" stroke="#FF3B30" stroke-width="1.5" stroke-linecap="round"/>
-                    <circle cx="13" cy="13" r="1.5" fill="#007AFF"/>
-                  </svg>
-                </div>
-                <!-- Edge -->
-                <div style="width:46px;height:46px;border-radius:12px;background:#fff;box-shadow:0 2px 12px rgba(25,40,55,0.10);display:flex;align-items:center;justify-content:center;" aria-label="Edge">
-                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
-                    <path d="M5 10c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#0078D4" opacity=".2"/>
-                    <path d="M8 14c0-2.8 2.2-5 5-5s5 2.2 5 5-2.2 5-5 5H8" stroke="#0078D4" stroke-width="1.8" stroke-linecap="round"/>
-                    <path d="M5 18h16" stroke="#0078D4" stroke-width="1.8" stroke-linecap="round" opacity=".5"/>
-                  </svg>
+                <div class="inc-af-body">
+                  <div class="inc-af-fwrap">
+                    <div class="inc-af-lbl">Email</div>
+                    <div class="inc-af-field" id="incAfEmailField">
+                      <span class="inc-af-ftext" id="incAfEmailTxt"></span>
+                      <span class="inc-af-cursor" id="incAfCursorE"></span>
+                      <div class="inc-af-tick" id="incAfTickE">
+                        <svg width="8" height="8" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2 6 5 9 10 3"/></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="inc-af-fwrap">
+                    <div class="inc-af-lbl">Password</div>
+                    <div class="inc-af-field" id="incAfPwField">
+                      <span class="inc-af-ftext" id="incAfPwTxt"></span>
+                      <span class="inc-af-cursor" id="incAfCursorP"></span>
+                      <div class="inc-af-tick" id="incAfTickP">
+                        <svg width="8" height="8" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2 6 5 9 10 3"/></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="inc-af-badge" id="incAfBadge">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
+                    Filled by Snaarplock
+                  </div>
                 </div>
               </div>
             </div>
@@ -3745,18 +4066,33 @@
             <h3 class="inc-card-title">Secure Sharing</h3>
             <p class="inc-card-desc">Share vault items with family or teammates — zero-knowledge, end-to-end encrypted.</p>
             <div class="inc-card-visual">
-              <div style="display:flex;align-items:center;gap:0;">
-                <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#7342E2,#a87af7);border:2.5px solid #F4F5F9;display:flex;align-items:center;justify-content:center;position:relative;z-index:4;margin-right:-11px;">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <div class="inc-share-widget" id="incShareWidget">
+                <div class="inc-share-avs">
+                  <div class="inc-share-av inc-share-av-1" id="incShareAv1" aria-hidden="true">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <div class="inc-share-av inc-share-av-2" id="incShareAv2" aria-hidden="true">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <div class="inc-share-av inc-share-av-3" id="incShareAv3" aria-hidden="true">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <div class="inc-share-av-add" id="incShareAvAdd" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#8B93B3" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                  </div>
                 </div>
-                <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#244FFC,#7B9AFD);border:2.5px solid #F4F5F9;display:flex;align-items:center;justify-content:center;position:relative;z-index:3;margin-right:-11px;">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <div class="inc-share-link-card" id="incShareLinkCard">
+                  <div class="inc-share-link-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                  </div>
+                  <div class="inc-share-link-meta">
+                    <span class="inc-share-link-url">snaar.pk/s/k8x2Rp…</span>
+                    <span class="inc-share-enc">E2E Encrypted</span>
+                  </div>
                 </div>
-                <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#12B76A,#4ade80);border:2.5px solid #F4F5F9;display:flex;align-items:center;justify-content:center;position:relative;z-index:2;margin-right:10px;">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </div>
-                <div style="width:30px;height:30px;border-radius:50%;background:#fff;border:1.5px dashed #C8CEEA;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8B93B3" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                <div class="inc-share-expiry" id="incShareExpiry">
+                  <span class="inc-share-exp-dot"></span>
+                  <span id="incShareTimer">Expires in 23:59:42</span>
                 </div>
               </div>
             </div>
@@ -3767,11 +4103,25 @@
             <h3 class="inc-card-title">Zero-Knowledge Security</h3>
             <p class="inc-card-desc">AES-256 encryption, biometric unlock, and additional protection are always active.</p>
             <div class="inc-card-visual">
-              <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;justify-content:flex-start;width:100%;">
-                <span style="background:#fff;border:1.5px solid #E2E6F3;border-radius:8px;padding:6px 11px;font-size:11px;font-weight:700;color:#192837;font-family:var(--font-body);letter-spacing:0.04em;white-space:nowrap;">AES&#8209;256</span>
-                <span style="background:#fff;border:1.5px solid #E2E6F3;border-radius:8px;padding:6px 11px;font-size:11px;font-weight:700;color:#192837;font-family:var(--font-body);letter-spacing:0.04em;white-space:nowrap;">PBKDF2</span>
-                <span style="background:#fff;border:1.5px solid #E2E6F3;border-radius:8px;padding:6px 11px;font-size:11px;font-weight:700;color:#192837;font-family:var(--font-body);letter-spacing:0.04em;white-space:nowrap;">TLS&#160;1.3</span>
-                <span style="background:linear-gradient(135deg,#7342E2,#a87af7);border-radius:8px;padding:6px 11px;font-size:11px;font-weight:700;color:#fff;font-family:var(--font-body);letter-spacing:0.04em;white-space:nowrap;">E2E&#160;Encrypted</span>
+              <div class="inc-zk-widget">
+                <div class="inc-zk-flow">
+                  <div class="inc-zk-step">
+                    <div class="inc-zk-tag inc-zk-plain">Your data</div>
+                    <svg class="inc-zk-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    <div class="inc-zk-tag inc-zk-enc">AES-256</div>
+                  </div>
+                  <div class="inc-zk-step">
+                    <div class="inc-zk-tag inc-zk-enc">Encrypted</div>
+                    <svg class="inc-zk-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    <div class="inc-zk-tag inc-zk-server">Our servers 🔒</div>
+                  </div>
+                </div>
+                <div class="inc-zk-shield">
+                  <div class="inc-zk-shield-icon" aria-hidden="true">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <span class="inc-zk-shield-text">We can't read your vault.<br>Only you hold the key.</span>
+                </div>
               </div>
             </div>
           </div>
@@ -4944,6 +5294,204 @@
       // Init — suppress transform/opacity transition on first paint
       update(true);
       startTimer();
+    }());
+
+    // ── Bento Section — Interactive Card Animations ───────────────────────
+    (function () {
+      'use strict';
+      function qs(id) { return document.getElementById(id); }
+
+      var CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$%&*';
+      function rndCh() { return CHARS[Math.floor(Math.random() * CHARS.length)]; }
+
+      // ── 1. Password scramble loop ──────────────────────────────────────
+      var pwSlots = qs('incPwSlots');
+      var pwLbl   = qs('incPwLbl');
+      var pwStr   = qs('incPwStr');
+      var pwBits  = qs('incPwBits');
+      var pwBars  = [qs('incPwB0'), qs('incPwB1'), qs('incPwB2'), qs('incPwB3')];
+      var PASSWORDS = ['Kx9!mP#2nQ&vRs7@', 'qZ3*jL8@wN#6tF1$', 'Ry5!dH7&pM2*aK9#'];
+      var pwIdx = 0;
+
+      function runPw() {
+        if (!pwSlots) return;
+        var target = PASSWORDS[pwIdx++ % PASSWORDS.length];
+        if (pwLbl)  pwLbl.textContent = 'Generating…';
+        if (pwStr)  pwStr.classList.remove('vis');
+        if (pwBits) pwBits.classList.remove('vis');
+        pwBars.forEach(function(b) { if (b) b.style.width = '0%'; });
+        pwSlots.innerHTML = '';
+
+        var spans = target.split('').map(function() {
+          var s = document.createElement('span');
+          s.className = 'inc-pw-ch cycling';
+          s.textContent = rndCh();
+          pwSlots.appendChild(s);
+          return s;
+        });
+
+        var cycle = setInterval(function() {
+          spans.forEach(function(s) {
+            if (s.classList.contains('cycling')) s.textContent = rndCh();
+          });
+        }, 55);
+
+        var perChar = 1600 / target.length;
+        target.split('').forEach(function(ch, i) {
+          setTimeout(function() {
+            spans[i].textContent = ch;
+            spans[i].className = 'inc-pw-ch locked';
+            var seg = Math.min(Math.floor(i / (target.length / 4)), 3);
+            if (pwBars[seg]) pwBars[seg].style.width = '100%';
+            if (i === target.length - 1) {
+              clearInterval(cycle);
+              if (pwLbl) pwLbl.textContent = 'Password ready';
+              setTimeout(function() {
+                if (pwStr)  pwStr.classList.add('vis');
+                if (pwBits) pwBits.classList.add('vis');
+              }, 240);
+              setTimeout(runPw, 2700);
+            }
+          }, 260 + i * perChar);
+        });
+      }
+
+      // ── 2. Sync feed cycle ─────────────────────────────────────────────
+      var syncRows = Array.from(document.querySelectorAll('.inc-sync-row'));
+      var syncCur  = -1;
+
+      function runSync() {
+        if (!syncRows.length) return;
+        var prev = syncCur;
+        syncCur = (syncCur + 1) % syncRows.length;
+        if (prev >= 0) syncRows[prev].classList.add('exit');
+        syncRows[syncCur].classList.remove('exit');
+        syncRows[syncCur].classList.add('active');
+        if (prev >= 0) {
+          setTimeout(function() { syncRows[prev].classList.remove('active', 'exit'); }, 420);
+        }
+        setTimeout(runSync, 1900);
+      }
+
+      // ── 3. Autofill demo loop ──────────────────────────────────────────
+      var afEmailField = qs('incAfEmailField');
+      var afEmailTxt   = qs('incAfEmailTxt');
+      var afCursorE    = qs('incAfCursorE');
+      var afTickE      = qs('incAfTickE');
+      var afPwField    = qs('incAfPwField');
+      var afPwTxt      = qs('incAfPwTxt');
+      var afCursorP    = qs('incAfCursorP');
+      var afTickP      = qs('incAfTickP');
+      var afBadge      = qs('incAfBadge');
+      var AF_EMAIL = 'j.smith@email.com';
+      var AF_PW    = '••••••••••';
+
+      function typeField(txtEl, curEl, value, speed, done) {
+        if (!txtEl || !curEl) { if (done) done(); return; }
+        curEl.classList.add('on');
+        var i = 0;
+        var iv = setInterval(function() {
+          txtEl.textContent = value.slice(0, ++i);
+          if (i >= value.length) {
+            clearInterval(iv);
+            curEl.classList.remove('on');
+            setTimeout(done, 180);
+          }
+        }, speed);
+      }
+
+      function runAf() {
+        if (!afEmailField) return;
+        if (afEmailTxt)  afEmailTxt.textContent  = '';
+        if (afPwTxt)     afPwTxt.textContent      = '';
+        if (afEmailField) afEmailField.classList.remove('focus', 'done');
+        if (afPwField)    afPwField.classList.remove('focus', 'done');
+        if (afTickE)      afTickE.classList.remove('show');
+        if (afTickP)      afTickP.classList.remove('show');
+        if (afBadge)      afBadge.classList.remove('show');
+        if (afCursorE)    afCursorE.classList.remove('on');
+        if (afCursorP)    afCursorP.classList.remove('on');
+
+        setTimeout(function() {
+          if (afEmailField) afEmailField.classList.add('focus');
+          typeField(afEmailTxt, afCursorE, AF_EMAIL, 52, function() {
+            if (afEmailField) { afEmailField.classList.remove('focus'); afEmailField.classList.add('done'); }
+            if (afTickE) afTickE.classList.add('show');
+            setTimeout(function() {
+              if (afPwField) afPwField.classList.add('focus');
+              typeField(afPwTxt, afCursorP, AF_PW, 72, function() {
+                if (afPwField) { afPwField.classList.remove('focus'); afPwField.classList.add('done'); }
+                if (afTickP) afTickP.classList.add('show');
+                setTimeout(function() {
+                  if (afBadge) afBadge.classList.add('show');
+                  setTimeout(runAf, 3100);
+                }, 260);
+              });
+            }, 320);
+          });
+        }, 520);
+      }
+
+      // ── 4. Secure share animation loop ────────────────────────────────
+      var shareAv1      = qs('incShareAv1');
+      var shareAv2      = qs('incShareAv2');
+      var shareAv3      = qs('incShareAv3');
+      var shareAvAdd    = qs('incShareAvAdd');
+      var shareLinkCard = qs('incShareLinkCard');
+      var shareExpiry   = qs('incShareExpiry');
+      var shareTimer    = qs('incShareTimer');
+
+      var shareSeconds = 86382;
+      function tickShare() {
+        if (!shareTimer) return;
+        shareSeconds = (shareSeconds - 1 + 86400) % 86400;
+        var h = Math.floor(shareSeconds / 3600);
+        var m = Math.floor((shareSeconds % 3600) / 60);
+        var s = shareSeconds % 60;
+        shareTimer.textContent = 'Expires in '
+          + String(h).padStart(2, '0') + ':'
+          + String(m).padStart(2, '0') + ':'
+          + String(s).padStart(2, '0');
+        setTimeout(tickShare, 1000);
+      }
+
+      function runShare() {
+        if (!shareAv1) return;
+        [shareAv1, shareAv2, shareAv3].forEach(function(a) { a.classList.remove('pop'); });
+        if (shareAvAdd)    shareAvAdd.classList.remove('pop');
+        if (shareLinkCard) shareLinkCard.classList.remove('show');
+        if (shareExpiry)   shareExpiry.classList.remove('show');
+
+        setTimeout(function() { shareAv1.classList.add('pop'); }, 260);
+        setTimeout(function() { shareAv2.classList.add('pop'); }, 430);
+        setTimeout(function() { shareAv3.classList.add('pop'); }, 590);
+        setTimeout(function() { if (shareAvAdd) shareAvAdd.classList.add('pop'); }, 730);
+        setTimeout(function() { if (shareLinkCard) shareLinkCard.classList.add('show'); }, 1120);
+        setTimeout(function() { if (shareExpiry) shareExpiry.classList.add('show'); }, 1520);
+        setTimeout(runShare, 5200);
+      }
+
+      // ── Start all animations when section enters viewport ─────────────
+      var section = document.getElementById('features');
+      var started = false;
+      function startAll() {
+        if (started) return;
+        started = true;
+        runPw();
+        setTimeout(runSync,  480);
+        setTimeout(runAf,    820);
+        setTimeout(runShare, 200);
+        setTimeout(tickShare, 1600);
+      }
+
+      if (section && 'IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function(entries) {
+          if (entries[0].isIntersecting) { startAll(); io.disconnect(); }
+        }, { threshold: 0.12 });
+        io.observe(section);
+      } else {
+        startAll();
+      }
     }());
 
     // Problem section — scroll-triggered entrance animations
