@@ -1080,6 +1080,47 @@
     }
 
     /* ==========================================
+       PROBLEM SECTION — ENTRANCE ANIMATIONS
+    ========================================== */
+    @media (prefers-reduced-motion: no-preference) {
+      /* Base hidden states */
+      .prob-fade-up {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+      }
+      .prob-scale-in {
+        opacity: 0;
+        transform: scale(0.88) translateY(18px);
+        transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+      }
+
+      /* Triggered visible states */
+      .prob-fade-up.prob-visible,
+      .prob-scale-in.prob-visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* Stagger delays (mirrors framer-motion staggerChildren: 0.2) */
+      .prob-d1 { transition-delay: 0.05s; }
+      .prob-d2 { transition-delay: 0.20s; }
+      .prob-d3 { transition-delay: 0.35s; }
+      .prob-d4 { transition-delay: 0.50s; }
+      .prob-d5 { transition-delay: 0.60s; }
+      .prob-d6 { transition-delay: 0.72s; }
+      .prob-d7 { transition-delay: 0.84s; }
+
+      /* Floating chips (mirrors framer-motion floatingVariants) */
+      @keyframes probFloat {
+        0%, 100% { transform: translateY(0px); }
+        50%       { transform: translateY(-8px); }
+      }
+      .prob-chip-float-1 { animation: probFloat 3s ease-in-out infinite; }
+      .prob-chip-float-2 { animation: probFloat 3.2s ease-in-out 0.55s infinite; }
+    }
+
+    /* ==========================================
        GETTING STARTED SECTION
     ========================================== */
     .setup-section {
@@ -3236,23 +3277,23 @@
         <!-- LEFT COLUMN -->
         <div class="problem-left">
 
-          <span class="problem-tag">
+          <span class="problem-tag prob-fade-up prob-d1">
             <span class="problem-tag-dot" aria-hidden="true"></span>
             The Problem
           </span>
 
-          <h2 class="problem-h2" id="problem-heading">
+          <h2 class="problem-h2 prob-fade-up prob-d2" id="problem-heading">
             Passwords Are<br>
             <span class="problem-accent">Broken.</span><br>
             And You&rsquo;re Exposed.
           </h2>
 
-          <p class="problem-body-text">
+          <p class="problem-body-text prob-fade-up prob-d3">
             The average person manages 100+ accounts — and most share the same weak password across all of them.
             One breach ripples everywhere. Email. Banking. Work. Snaarplock exists because the current system is silently failing you.
           </p>
 
-          <div class="problem-ctas">
+          <div class="problem-ctas prob-fade-up prob-d4">
             <a href="#" class="btn-prob-primary">
               Get protected now
             </a>
@@ -3265,7 +3306,7 @@
         </div>
 
         <!-- RIGHT COLUMN -->
-        <div class="problem-right">
+        <div class="problem-right prob-scale-in prob-d2">
           <div class="problem-card">
 
             <!-- Password audit UI mockup -->
@@ -3332,7 +3373,7 @@
             </div>
 
             <!-- Floating chip: top right -->
-            <div class="problem-chip problem-chip-tr" aria-hidden="true">
+            <div class="problem-chip problem-chip-tr prob-chip-float-1" aria-hidden="true">
               <div class="pchip-inner">
                 <div class="pchip-iconbox pchip-iconbox-red">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -3345,7 +3386,7 @@
             </div>
 
             <!-- Floating chip: bottom left -->
-            <div class="problem-chip problem-chip-bl" aria-hidden="true">
+            <div class="problem-chip problem-chip-bl prob-chip-float-2" aria-hidden="true">
               <div class="pchip-inner">
                 <div class="pchip-iconbox pchip-iconbox-purple">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -3364,7 +3405,7 @@
         <div class="problem-stats" role="list" aria-label="Key security statistics">
 
           <!-- Cell 1: dark — avatars side by side with number + label -->
-          <div class="pstat pstat-dark" role="listitem">
+          <div class="pstat pstat-dark prob-fade-up prob-d5" role="listitem">
             <div class="pstat-dark-inner">
               <div class="pstat-avatars" aria-hidden="true">
                 <span class="pavatar" style="background:#7342E2">
@@ -3388,13 +3429,13 @@
           </div>
 
           <!-- Cell 2: light with accent number -->
-          <div class="pstat pstat-mid" role="listitem">
+          <div class="pstat pstat-mid prob-fade-up prob-d6" role="listitem">
             <strong class="pstat-big">81%</strong>
             <span class="pstat-small">Of breaches involve<br>stolen credentials</span>
           </div>
 
           <!-- Cell 3: brand accent -->
-          <div class="pstat pstat-hi" role="listitem">
+          <div class="pstat pstat-hi prob-fade-up prob-d7" role="listitem">
             <strong class="pstat-big">30K</strong>
             <span class="pstat-small">New sites hacked<br>every single day</span>
           </div>
@@ -4526,6 +4567,31 @@
 
     btnMonthly.addEventListener('click', () => setPricingPeriod('monthly'));
     btnYearly.addEventListener('click',  () => setPricingPeriod('yearly'));
+
+    // Problem section — scroll-triggered entrance animations
+    // Mirrors framer-motion containerVariants (staggerChildren) + itemVariants + imageVariants
+    (function () {
+      if (!('IntersectionObserver' in window)) {
+        // Fallback: just show everything for older browsers
+        document.querySelectorAll('.prob-fade-up, .prob-scale-in').forEach(function (el) {
+          el.classList.add('prob-visible');
+        });
+        return;
+      }
+
+      var animEls = document.querySelectorAll('.prob-fade-up, .prob-scale-in');
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('prob-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      animEls.forEach(function (el) { observer.observe(el); });
+    }());
   </script>
 
 </body>
