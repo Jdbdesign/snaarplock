@@ -1078,6 +1078,228 @@
       .pstat-mid { border-left: none; border-right: none; border-top: 1px solid rgba(25,40,55,0.07); border-bottom: 1px solid rgba(25,40,55,0.07); }
       .pstat-dark-inner { gap: 14px; }
     }
+
+    /* ==========================================
+       WHAT'S INCLUDED SECTION
+    ========================================== */
+    .included-section {
+      background: #fff;
+      padding: clamp(72px, 10vw, 120px) 0;
+    }
+
+    .included-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 60px);
+    }
+
+    .included-header {
+      text-align: center;
+      margin-bottom: clamp(40px, 5vw, 56px);
+    }
+
+    .included-h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.9rem, 3.8vw, 3rem);
+      line-height: 1.06;
+      letter-spacing: -0.022em;
+      color: #192837;
+      margin-bottom: 14px;
+    }
+
+    .included-sub {
+      font-family: var(--font-body);
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      color: var(--text-2);
+      opacity: 0.72;
+      max-width: 460px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ─── Bento Grid ─── */
+    .included-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 14px;
+      min-height: 480px;
+    }
+
+    /* Shared card base */
+    .inc-card {
+      background: #F4F5F9;
+      border-radius: 20px;
+      padding: 24px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .inc-card-title {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: #192837;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+
+    .inc-card-desc {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      color: #192837;
+      opacity: 0.52;
+      line-height: 1.55;
+      max-width: 240px;
+    }
+
+    .inc-card-visual {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    /* ─── Center card — spans 2 rows ─── */
+    .inc-card-center {
+      grid-column: 2;
+      grid-row: 1 / 3;
+      background: #F4F5F9;
+      border-radius: 20px;
+      padding: 30px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .inc-center-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.022em;
+      color: #192837;
+      margin-bottom: 10px;
+    }
+
+    .inc-center-desc {
+      font-family: var(--font-body);
+      font-size: 0.84rem;
+      color: #192837;
+      opacity: 0.58;
+      line-height: 1.6;
+      max-width: 250px;
+      margin: 0 auto 0;
+    }
+
+    .inc-device-wrap {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .inc-device {
+      width: 172px;
+      height: 220px;
+      background: linear-gradient(155deg, #140a2e 0%, #3b1872 45%, #7342E2 100%);
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(115,66,226,0.32), 0 4px 16px rgba(115,66,226,0.14);
+    }
+
+    /* Faint glow rings behind device */
+    .inc-device::before {
+      content: '';
+      position: absolute;
+      inset: -28px;
+      border-radius: 50px;
+      background: radial-gradient(ellipse at center, rgba(115,66,226,0.14) 0%, transparent 70%);
+      z-index: -1;
+    }
+
+    .inc-center-bottom {
+      width: 100%;
+      padding-top: 18px;
+      border-top: 1px solid rgba(25,40,55,0.08);
+    }
+
+    .inc-center-bottom-title {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #192837;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+
+    .inc-theme-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .inc-theme-dot {
+      width: 28px;
+      height: 20px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .inc-toggle {
+      width: 38px;
+      height: 22px;
+      background: var(--color-accent);
+      border-radius: 100px;
+      position: relative;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+
+    .inc-toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 960px) {
+      .included-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        min-height: unset;
+      }
+      .inc-card-center {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        min-height: 360px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .included-grid {
+        grid-template-columns: 1fr;
+      }
+      .inc-card-center {
+        grid-column: auto;
+        min-height: 320px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1458,6 +1680,157 @@
           <div class="pstat pstat-hi" role="listitem">
             <strong class="pstat-big">30K</strong>
             <span class="pstat-small">New sites hacked<br>every single day</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======= WHAT'S INCLUDED ======= -->
+    <section class="included-section" id="features" aria-labelledby="included-heading">
+      <div class="included-container">
+
+        <div class="included-header">
+          <h2 class="included-h2" id="included-heading">Snaarplock handles the details</h2>
+          <p class="included-sub">One master password protects everything — passwords, notes, and cards — always in sync across every device.</p>
+        </div>
+
+        <div class="included-grid">
+
+          <!-- Top-left: Password Generator -->
+          <div class="inc-card">
+            <h3 class="inc-card-title">Password Generator</h3>
+            <p class="inc-card-desc">Creates strong, unique passwords for every site you visit.</p>
+            <div class="inc-card-visual">
+              <div style="background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 4px 20px rgba(25,40,55,0.10);width:100%;max-width:210px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
+                  <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#7342E2,#a87af7);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
+                  </div>
+                  <span style="font-size:11.5px;font-weight:600;color:#192837;font-family:var(--font-body);">New password ready</span>
+                </div>
+                <div style="background:#F4F5F9;border-radius:7px;padding:7px 10px;font-family:monospace;font-size:11px;color:#192837;letter-spacing:0.05em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">Kx9!mP#2nQ&amp;vRs7@</div>
+                <div style="display:flex;gap:4px;margin-top:9px;">
+                  <div style="height:4px;border-radius:2px;background:#22C55E;flex:1;"></div>
+                  <div style="height:4px;border-radius:2px;background:#22C55E;flex:1;"></div>
+                  <div style="height:4px;border-radius:2px;background:#22C55E;flex:1;"></div>
+                  <div style="height:4px;border-radius:2px;background:#22C55E;flex:1;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CENTER tall: Auto Sync -->
+          <div class="inc-card-center">
+            <h3 class="inc-center-title">Auto Sync</h3>
+            <p class="inc-center-desc">We ensure your vault is always up to date. Every password, note, and card — synced in real time.</p>
+            <div class="inc-device-wrap">
+              <div class="inc-device" aria-hidden="true">
+                <svg width="88" height="88" viewBox="0 0 88 88" fill="none" aria-hidden="true">
+                  <circle cx="44" cy="44" r="38" stroke="rgba(255,255,255,0.10)" stroke-width="1.5"/>
+                  <circle cx="44" cy="44" r="26" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <rect x="31" y="41" width="26" height="18" rx="3.5" fill="rgba(255,255,255,0.90)"/>
+                  <path d="M36 41V35.5a8 8 0 0 1 16 0V41" stroke="rgba(255,255,255,0.90)" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="44" cy="50" r="2.5" fill="#7342E2"/>
+                  <circle cx="20" cy="44" r="4" fill="rgba(115,66,226,0.6)"/>
+                  <circle cx="68" cy="44" r="4" fill="rgba(115,66,226,0.6)"/>
+                  <circle cx="44" cy="18" r="3" fill="rgba(255,255,255,0.35)"/>
+                  <circle cx="44" cy="70" r="3" fill="rgba(255,255,255,0.35)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="inc-center-bottom">
+              <p class="inc-center-bottom-title">Customizable vault themes</p>
+              <div class="inc-theme-row">
+                <div class="inc-theme-dot" style="background:#192837;"></div>
+                <div class="inc-theme-dot" style="background:#7342E2;"></div>
+                <div class="inc-theme-dot" style="background:#244FFC;"></div>
+                <div class="inc-theme-dot" style="background:#12B76A;"></div>
+                <div class="inc-theme-dot" style="background:#F79009;"></div>
+                <div class="inc-toggle" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top-right: Browser Extensions -->
+          <div class="inc-card">
+            <h3 class="inc-card-title">Browser Extensions</h3>
+            <p class="inc-card-desc">One-click autofill across Chrome, Firefox, Safari, and Edge.</p>
+            <div class="inc-card-visual">
+              <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;">
+                <!-- Chrome -->
+                <div style="width:46px;height:46px;border-radius:12px;background:#fff;box-shadow:0 2px 12px rgba(25,40,55,0.10);display:flex;align-items:center;justify-content:center;" aria-label="Chrome">
+                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+                    <circle cx="13" cy="13" r="5" fill="#4285F4"/>
+                    <path d="M13 8h11M5.5 21.5 8.5 16M20.5 21.5H5.5" stroke-width="4.5" stroke-linecap="round" stroke="#FBBC04"/>
+                    <path d="M13 8h11" stroke="#EA4335" stroke-width="4.5" stroke-linecap="round"/>
+                    <path d="M24 13a11 11 0 1 1-22 0 11 11 0 0 1 22 0z" stroke="#E8EAED" stroke-width="1"/>
+                  </svg>
+                </div>
+                <!-- Firefox -->
+                <div style="width:46px;height:46px;border-radius:12px;background:#fff;box-shadow:0 2px 12px rgba(25,40,55,0.10);display:flex;align-items:center;justify-content:center;" aria-label="Firefox">
+                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+                    <circle cx="13" cy="13" r="10" fill="#FF9500" opacity=".18"/>
+                    <circle cx="13" cy="13" r="6" fill="#FF6611"/>
+                    <path d="M13 5c5 0 8.5 3 9 7.5-1-2-3.5-2.5-6-1.5" fill="#FF9500"/>
+                  </svg>
+                </div>
+                <!-- Safari -->
+                <div style="width:46px;height:46px;border-radius:12px;background:#fff;box-shadow:0 2px 12px rgba(25,40,55,0.10);display:flex;align-items:center;justify-content:center;" aria-label="Safari">
+                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+                    <circle cx="13" cy="13" r="10" stroke="#007AFF" stroke-width="1.5"/>
+                    <line x1="13" y1="5" x2="13" y2="13" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="13" y1="13" x2="18" y2="18" stroke="#FF3B30" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="13" cy="13" r="1.5" fill="#007AFF"/>
+                  </svg>
+                </div>
+                <!-- Edge -->
+                <div style="width:46px;height:46px;border-radius:12px;background:#fff;box-shadow:0 2px 12px rgba(25,40,55,0.10);display:flex;align-items:center;justify-content:center;" aria-label="Edge">
+                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+                    <path d="M5 10c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#0078D4" opacity=".2"/>
+                    <path d="M8 14c0-2.8 2.2-5 5-5s5 2.2 5 5-2.2 5-5 5H8" stroke="#0078D4" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M5 18h16" stroke="#0078D4" stroke-width="1.8" stroke-linecap="round" opacity=".5"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom-left: Secure Sharing -->
+          <div class="inc-card">
+            <h3 class="inc-card-title">Secure Sharing</h3>
+            <p class="inc-card-desc">Share vault items with family or teammates — zero-knowledge, end-to-end encrypted.</p>
+            <div class="inc-card-visual">
+              <div style="display:flex;align-items:center;gap:0;">
+                <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#7342E2,#a87af7);border:2.5px solid #F4F5F9;display:flex;align-items:center;justify-content:center;position:relative;z-index:4;margin-right:-11px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#244FFC,#7B9AFD);border:2.5px solid #F4F5F9;display:flex;align-items:center;justify-content:center;position:relative;z-index:3;margin-right:-11px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#12B76A,#4ade80);border:2.5px solid #F4F5F9;display:flex;align-items:center;justify-content:center;position:relative;z-index:2;margin-right:10px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div style="width:30px;height:30px;border-radius:50%;background:#fff;border:1.5px dashed #C8CEEA;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8B93B3" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom-right: Zero-Knowledge Security -->
+          <div class="inc-card">
+            <h3 class="inc-card-title">Zero-Knowledge Security</h3>
+            <p class="inc-card-desc">AES-256 encryption, biometric unlock, and additional protection are always active.</p>
+            <div class="inc-card-visual">
+              <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;justify-content:flex-start;width:100%;">
+                <span style="background:#fff;border:1.5px solid #E2E6F3;border-radius:8px;padding:6px 11px;font-size:11px;font-weight:700;color:#192837;font-family:var(--font-body);letter-spacing:0.04em;white-space:nowrap;">AES&#8209;256</span>
+                <span style="background:#fff;border:1.5px solid #E2E6F3;border-radius:8px;padding:6px 11px;font-size:11px;font-weight:700;color:#192837;font-family:var(--font-body);letter-spacing:0.04em;white-space:nowrap;">PBKDF2</span>
+                <span style="background:#fff;border:1.5px solid #E2E6F3;border-radius:8px;padding:6px 11px;font-size:11px;font-weight:700;color:#192837;font-family:var(--font-body);letter-spacing:0.04em;white-space:nowrap;">TLS&#160;1.3</span>
+                <span style="background:linear-gradient(135deg,#7342E2,#a87af7);border-radius:8px;padding:6px 11px;font-size:11px;font-weight:700;color:#fff;font-family:var(--font-body);letter-spacing:0.04em;white-space:nowrap;">E2E&#160;Encrypted</span>
+              </div>
+            </div>
           </div>
 
         </div>
