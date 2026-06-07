@@ -17,12 +17,14 @@ const mime = {
   '.svg':  'image/svg+xml',
   '.ico':  'image/x-icon',
   '.json': 'application/json',
+  '.mp4':  'video/mp4',
+  '.webm': 'video/webm',
   '.woff': 'font/woff',
   '.woff2':'font/woff2',
 };
 
 const server = http.createServer((req, res) => {
-  const urlPath = req.url.split('?')[0];
+  const urlPath = decodeURIComponent(req.url.split('?')[0]);
   const filePath = path.join(__dirname, urlPath === '/' ? 'index.html' : urlPath);
   const ext = path.extname(filePath);
   const contentType = mime[ext] || 'application/octet-stream';

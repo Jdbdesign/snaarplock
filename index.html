@@ -945,14 +945,15 @@
       overflow: visible;
     }
 
-    /* Inner password audit UI mockup */
+    /* Password audit image — fills the full card rectangle */
     .pcard-ui {
-      background: #fff;
-      border-radius: 16px;
-      padding: 18px 20px 20px;
+      position: absolute;
+      inset: 0;
       width: 100%;
-      max-width: 296px;
-      box-shadow: 0 12px 40px rgba(25,40,55,0.13);
+      height: 100%;
+      object-fit: cover;
+      border-radius: 24px;
+      display: block;
     }
 
     .pcard-header {
@@ -1201,6 +1202,16 @@
       overflow: hidden;
     }
 
+    .setup-vault-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 24px;
+      display: block;
+    }
+
     /* App card header bar */
     .sac-topbar {
       background: #192837;
@@ -1336,6 +1347,7 @@
     /* Floating chip */
     .setup-chip {
       position: absolute;
+      z-index: 10;
       background: #fff;
       border-radius: 14px;
       padding: 10px 14px;
@@ -3836,68 +3848,8 @@
         <div class="problem-right prob-scale-in prob-d2">
           <div class="problem-card">
 
-            <!-- Password audit UI mockup -->
-            <div class="pcard-ui" role="img" aria-label="Password audit showing multiple breached and weak accounts">
-              <div class="pcard-header">
-                <span class="pcard-title">Password Audit</span>
-                <span class="pcard-alert-badge">5 Issues Found</span>
-              </div>
-
-              <div class="pcard-row">
-                <div class="pcard-icon">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                </div>
-                <div class="pcard-info">
-                  <span class="pcard-site">work.email.com</span>
-                  <span class="pcard-pw">••••••••••</span>
-                </div>
-                <span class="pcard-status leaked">Leaked</span>
-              </div>
-
-              <div class="pcard-row">
-                <div class="pcard-icon">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#192837" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/><path d="m14 15 2 2 4-4"/></svg>
-                </div>
-                <div class="pcard-info">
-                  <span class="pcard-site">mybank.ng</span>
-                  <span class="pcard-pw">••••••</span>
-                </div>
-                <span class="pcard-status weak">Weak</span>
-              </div>
-
-              <div class="pcard-row">
-                <div class="pcard-icon">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F04438" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </div>
-                <div class="pcard-info">
-                  <span class="pcard-site">social-app.com</span>
-                  <span class="pcard-pw">••••••••••</span>
-                </div>
-                <span class="pcard-status leaked">Leaked</span>
-              </div>
-
-              <div class="pcard-row">
-                <div class="pcard-icon">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F79009" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-                </div>
-                <div class="pcard-info">
-                  <span class="pcard-site">shopping-store.com</span>
-                  <span class="pcard-pw">••••••••</span>
-                </div>
-                <span class="pcard-status reused">Reused</span>
-              </div>
-
-              <div class="pcard-row">
-                <div class="pcard-icon">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-                </div>
-                <div class="pcard-info">
-                  <span class="pcard-site">work-tools.io</span>
-                  <span class="pcard-pw">••••••••••</span>
-                </div>
-                <span class="pcard-status leaked">Leaked</span>
-              </div>
-            </div>
+            <!-- Password audit image -->
+            <img src="Copilot_20260607_215153.png" alt="Password audit showing multiple breached and weak accounts" class="pcard-ui" />
 
             <!-- Floating chip: top right -->
             <div class="problem-chip problem-chip-tr prob-chip-float-1" aria-hidden="true">
@@ -3935,18 +3887,10 @@
           <div class="pstat pstat-dark prob-fade-up prob-d5" role="listitem">
             <div class="pstat-dark-inner">
               <div class="pstat-avatars" aria-hidden="true">
-                <span class="pavatar" style="background:#7342E2">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </span>
-                <span class="pavatar" style="background:#F04438">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </span>
-                <span class="pavatar" style="background:#12B76A">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </span>
-                <span class="pavatar" style="background:#F79009">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </span>
+                <span class="pavatar"><img src="Ellipse 1.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></span>
+                <span class="pavatar"><img src="Ellipse 2.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></span>
+                <span class="pavatar"><img src="Ellipse 3.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></span>
+                <span class="pavatar"><img src="Ellipse 4.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></span>
               </div>
               <div class="pstat-dark-text">
                 <strong class="pstat-big">4.1B+</strong>
@@ -4197,71 +4141,10 @@
               </div>
             </div>
 
-            <!-- App card -->
-            <div class="setup-app-card">
-
-              <!-- Topbar -->
-              <div class="sac-topbar">
-                <div class="sac-dots">
-                  <div class="sac-dot" style="background:#F04438;"></div>
-                  <div class="sac-dot" style="background:#F79009;"></div>
-                  <div class="sac-dot" style="background:#12B76A;"></div>
-                </div>
-                <span class="sac-title">Snaarplock — My Vault</span>
-              </div>
-
-              <!-- Body -->
-              <div class="sac-body">
-
-                <!-- Setup complete badge -->
-                <div class="sac-progress-badge">
-                  <div class="sac-progress-icon">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                  </div>
-                  <span class="sac-progress-text">Setup complete — vault is active</span>
-                </div>
-
-                <!-- Vault entries -->
-                <p class="sac-vault-label">Saved passwords</p>
-
-                <div class="sac-entry">
-                  <div class="sac-entry-icon" style="background:#F0F7FF; color:#0078D4;">Gh</div>
-                  <div class="sac-entry-info">
-                    <span class="sac-entry-site">github.com</span>
-                    <span class="sac-entry-pw">••••••••••••</span>
-                  </div>
-                  <span class="sac-entry-fill">Autofill</span>
-                </div>
-
-                <div class="sac-entry">
-                  <div class="sac-entry-icon" style="background:#FFF0F0; color:#E50914;">Nf</div>
-                  <div class="sac-entry-info">
-                    <span class="sac-entry-site">netflix.com</span>
-                    <span class="sac-entry-pw">••••••••••</span>
-                  </div>
-                  <span class="sac-entry-fill">Autofill</span>
-                </div>
-
-                <div class="sac-entry">
-                  <div class="sac-entry-icon" style="background:#FFF4ED; color:#F79009;">Gm</div>
-                  <div class="sac-entry-info">
-                    <span class="sac-entry-site">gmail.com</span>
-                    <span class="sac-entry-pw">•••••••••••</span>
-                  </div>
-                  <span class="sac-entry-fill">Autofill</span>
-                </div>
-
-                <div class="sac-entry">
-                  <div class="sac-entry-icon" style="background:#F0EEFF; color:#7342E2;">Sl</div>
-                  <div class="sac-entry-info">
-                    <span class="sac-entry-site">slack.com</span>
-                    <span class="sac-entry-pw">•••••••••</span>
-                  </div>
-                  <span class="sac-entry-fill">Autofill</span>
-                </div>
-
-              </div>
-            </div>
+            <!-- Vault video -->
+            <video class="setup-vault-video" autoplay muted loop playsinline preload="metadata">
+              <source src="0607.mp4" type="video/mp4">
+            </video>
 
             <!-- Floating chip: bottom-right -->
             <div class="setup-chip setup-chip-br">
@@ -4715,7 +4598,7 @@
               <li class="testi-card">
                 <p class="testi-quote">Snaarplock completely transformed how I manage passwords. One master password and I'm done — no more sticky notes or forgotten credentials.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=80&h=80" alt="Briana Patton" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 1.png" alt="Briana Patton" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Briana Patton</span>
                     <span class="testi-handle">Operations Manager</span>
@@ -4725,7 +4608,7 @@
               <li class="testi-card">
                 <p class="testi-quote">Implementation was smooth and quick. The user-friendly interface made onboarding my entire team completely effortless.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=80&h=80" alt="Bilal Ahmed" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 2.png" alt="Bilal Ahmed" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Bilal Ahmed</span>
                     <span class="testi-handle">IT Manager</span>
@@ -4735,7 +4618,7 @@
               <li class="testi-card">
                 <p class="testi-quote">The support team is exceptional — guided us through setup and continues to provide outstanding assistance whenever we need it.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=80&h=80" alt="Saman Malik" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 3.png" alt="Saman Malik" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Saman Malik</span>
                     <span class="testi-handle">Customer Support Lead</span>
@@ -4746,7 +4629,7 @@
               <li class="testi-card" aria-hidden="true">
                 <p class="testi-quote">Snaarplock completely transformed how I manage passwords. One master password and I'm done — no more sticky notes or forgotten credentials.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 1.png" alt="" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Briana Patton</span>
                     <span class="testi-handle">Operations Manager</span>
@@ -4756,7 +4639,7 @@
               <li class="testi-card" aria-hidden="true">
                 <p class="testi-quote">Implementation was smooth and quick. The user-friendly interface made onboarding my entire team completely effortless.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 2.png" alt="" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Bilal Ahmed</span>
                     <span class="testi-handle">IT Manager</span>
@@ -4766,7 +4649,7 @@
               <li class="testi-card" aria-hidden="true">
                 <p class="testi-quote">The support team is exceptional — guided us through setup and continues to provide outstanding assistance whenever we need it.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 3.png" alt="" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Saman Malik</span>
                     <span class="testi-handle">Customer Support Lead</span>
@@ -4782,7 +4665,7 @@
               <li class="testi-card">
                 <p class="testi-quote">Seamless integration enhanced our workflow dramatically. The intuitive interface means my team was productive from day one.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=80&h=80" alt="Omar Raza" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 4.png" alt="Omar Raza" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Omar Raza</span>
                     <span class="testi-handle">CEO</span>
@@ -4792,7 +4675,7 @@
               <li class="testi-card">
                 <p class="testi-quote">Robust features and quick support have transformed our project workflow, making the whole team significantly more efficient.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=80&h=80" alt="Zainab Hussain" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 5.png" alt="Zainab Hussain" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Zainab Hussain</span>
                     <span class="testi-handle">Project Manager</span>
@@ -4802,7 +4685,7 @@
               <li class="testi-card">
                 <p class="testi-quote">The smooth rollout exceeded every expectation. It streamlined our processes and measurably improved overall business performance.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=80&h=80" alt="Aliza Khan" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 6.png" alt="Aliza Khan" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Aliza Khan</span>
                     <span class="testi-handle">Business Analyst</span>
@@ -4813,7 +4696,7 @@
               <li class="testi-card" aria-hidden="true">
                 <p class="testi-quote">Seamless integration enhanced our workflow dramatically. The intuitive interface means my team was productive from day one.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 4.png" alt="" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Omar Raza</span>
                     <span class="testi-handle">CEO</span>
@@ -4823,7 +4706,7 @@
               <li class="testi-card" aria-hidden="true">
                 <p class="testi-quote">Robust features and quick support have transformed our project workflow, making the whole team significantly more efficient.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 5.png" alt="" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Zainab Hussain</span>
                     <span class="testi-handle">Project Manager</span>
@@ -4833,7 +4716,7 @@
               <li class="testi-card" aria-hidden="true">
                 <p class="testi-quote">The smooth rollout exceeded every expectation. It streamlined our processes and measurably improved overall business performance.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 6.png" alt="" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Aliza Khan</span>
                     <span class="testi-handle">Business Analyst</span>
@@ -4849,7 +4732,7 @@
               <li class="testi-card">
                 <p class="testi-quote">Our security posture improved dramatically with a user-friendly design and overwhelmingly positive feedback from our customers.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=80&h=80" alt="Farhan Siddiqui" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 7.png" alt="Farhan Siddiqui" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Farhan Siddiqui</span>
                     <span class="testi-handle">Marketing Director</span>
@@ -4859,7 +4742,7 @@
               <li class="testi-card">
                 <p class="testi-quote">They delivered a solution that truly exceeded expectations — understanding our needs and elevating our entire security operation.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=80&h=80" alt="Sana Sheikh" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 5.png" alt="Sana Sheikh" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Sana Sheikh</span>
                     <span class="testi-handle">Sales Manager</span>
@@ -4869,7 +4752,7 @@
               <li class="testi-card">
                 <p class="testi-quote">Using Snaarplock, our team's productivity and online security improved significantly, delivering a measurable boost to our bottom line.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=80&h=80" alt="Hassan Ali" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 6.png" alt="Hassan Ali" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Hassan Ali</span>
                     <span class="testi-handle">E-commerce Manager</span>
@@ -4880,7 +4763,7 @@
               <li class="testi-card" aria-hidden="true">
                 <p class="testi-quote">Our security posture improved dramatically with a user-friendly design and overwhelmingly positive feedback from our customers.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 7.png" alt="" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Farhan Siddiqui</span>
                     <span class="testi-handle">Marketing Director</span>
@@ -4890,7 +4773,7 @@
               <li class="testi-card" aria-hidden="true">
                 <p class="testi-quote">They delivered a solution that truly exceeded expectations — understanding our needs and elevating our entire security operation.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 5.png" alt="" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Sana Sheikh</span>
                     <span class="testi-handle">Sales Manager</span>
@@ -4900,7 +4783,7 @@
               <li class="testi-card" aria-hidden="true">
                 <p class="testi-quote">Using Snaarplock, our team's productivity and online security improved significantly, delivering a measurable boost to our bottom line.</p>
                 <div class="testi-author">
-                  <img class="testi-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=80&h=80" alt="" width="40" height="40">
+                  <img class="testi-avatar" src="Ellipse 6.png" alt="" width="40" height="40">
                   <div class="testi-author-info">
                     <span class="testi-name">Hassan Ali</span>
                     <span class="testi-handle">E-commerce Manager</span>
@@ -5021,18 +4904,10 @@
           <!-- Social proof -->
           <div class="gs-social-proof inc-fade-up inc-d5">
             <div class="gs-avatars" aria-hidden="true">
-              <div class="gs-avatar" style="background:#DDE8FF;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#4A6FA5"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#4A6FA5"/></svg>
-              </div>
-              <div class="gs-avatar" style="background:#FFE8D6;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#A0522D"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#A0522D"/></svg>
-              </div>
-              <div class="gs-avatar" style="background:#E8F4E8;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#3A7A3A"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#3A7A3A"/></svg>
-              </div>
-              <div class="gs-avatar" style="background:#F0EEFF;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#7342E2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#7342E2"/></svg>
-              </div>
+              <div class="gs-avatar"><img src="Ellipse 5.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+              <div class="gs-avatar"><img src="Ellipse 6.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+              <div class="gs-avatar"><img src="Ellipse 7.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+              <div class="gs-avatar"><img src="Ellipse 3.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
             </div>
             <div class="gs-proof-text">
               <span class="gs-proof-count">40,000+</span>
