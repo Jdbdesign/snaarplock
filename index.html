@@ -453,7 +453,7 @@
       z-index: 1;
       max-width: 1280px;
       margin: 0 auto;
-      padding: calc(68px + clamp(40px, 8vw, 72px)) 20px 80px;
+      padding: calc(68px + clamp(40px, 8vw, 72px)) 20px 60px;
     }
     @media (min-width: 640px) { .hero-body { padding-left: 32px; padding-right: 32px; } }
 
@@ -623,7 +623,7 @@
     ========================================== */
     .brands-section {
       background: #fff;
-      padding: 52px 0 48px;
+      padding: 40px 0 36px;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       overflow: hidden;
@@ -691,31 +691,29 @@
     .brand-item {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 0 52px;
+      justify-content: center;
+      padding: 0 44px;
       white-space: nowrap;
       flex-shrink: 0;
-      opacity: 0.42;
-      transition: opacity var(--t-fast);
       user-select: none;
       cursor: default;
     }
-    .brand-item:hover { opacity: 0.72; }
 
     /* Thin divider between brands */
     .brands-set .brand-item + .brand-item {
       border-left: 1px solid var(--border);
     }
 
-    .brand-mark {
+    .brand-logo {
+      height: 32px;
+      width: auto;
+      display: block;
       flex-shrink: 0;
-      color: var(--color-text);
+      filter: grayscale(1) opacity(0.38);
+      transition: filter 0.4s ease;
     }
-
-    .brand-name {
-      font-family: var(--font-body);
-      color: var(--color-text);
-      line-height: 1;
+    .brand-item:hover .brand-logo {
+      filter: grayscale(0) opacity(1);
     }
 
     /* Per-brand type treatments */
@@ -731,7 +729,7 @@
     ========================================== */
     .problem-section {
       background: #fff;
-      padding: clamp(72px, 10vw, 120px) 0;
+      padding: clamp(56px, 8vw, 96px) 0;
     }
 
     .problem-container {
@@ -739,9 +737,10 @@
       margin: 0 auto;
       padding: 0 60px;
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      column-gap: clamp(40px, 6vw, 80px);
-      row-gap: 44px;
+      grid-template-columns: 1fr auto;
+      column-gap: clamp(24px, 4vw, 56px);
+      row-gap: 40px;
+      align-items: center;
     }
     @media (max-width: 1024px) { .problem-container { padding: 0 40px; } }
     @media (max-width: 900px)  {
@@ -754,7 +753,7 @@
     }
 
     /* LEFT COLUMN */
-    .problem-left { display: flex; flex-direction: column; align-self: center; }
+    .problem-left { display: flex; flex-direction: column; }
 
     .problem-tag {
       display: inline-flex;
@@ -813,7 +812,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #192837;
+      background: var(--color-accent);
       color: #fff;
       font-family: var(--font-body);
       font-size: 14px;
@@ -845,6 +844,33 @@
       transition: background var(--t-fast), border-color var(--t-fast);
     }
     .btn-prob-secondary:hover { background: rgba(25,40,55,0.04); border-color: rgba(25,40,55,0.30); }
+
+    /* Full-width image row */
+    .problem-image-wrap {
+      grid-column: 1 / -1;
+      border-radius: 24px;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .problem-image-wrap img {
+      width: 100%;
+      height: clamp(300px, 42vw, 520px);
+      object-fit: cover;
+      display: block;
+      border-radius: 24px;
+    }
+
+    /* CTA wrapper — far right column, aligned with title/subtitle */
+    .problem-ctas-wrap {
+      display: flex;
+      align-items: center;
+      align-self: center;
+    }
+    .problem-ctas-wrap .problem-ctas {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
 
     /* Stats bar — spans full width below both columns */
     .problem-stats {
@@ -1138,7 +1164,7 @@
     ========================================== */
     .setup-section {
       background: #F8F9FC;
-      padding: clamp(72px, 10vw, 120px) 0;
+      padding: clamp(56px, 8vw, 96px) 0;
     }
 
     .setup-container {
@@ -1488,7 +1514,7 @@
     ========================================== */
     .included-section {
       background: #fff;
-      padding: clamp(72px, 10vw, 120px) 0;
+      padding: clamp(56px, 8vw, 96px) 0;
     }
 
     .included-container {
@@ -2053,7 +2079,7 @@
     ========================================== */
     .compare-section {
       background: #fff;
-      padding: clamp(72px, 10vw, 120px) 0;
+      padding: clamp(56px, 8vw, 96px) 0;
     }
 
     .compare-container {
@@ -2298,7 +2324,7 @@
     ========================================== */
     .security-section {
       background: #F4F5F9;
-      padding: clamp(72px, 10vw, 120px) 0;
+      padding: clamp(56px, 8vw, 96px) 0;
     }
 
     .security-container {
@@ -2625,7 +2651,7 @@
     ========================================== */
     .pricing-section {
       background: #fff;
-      padding: clamp(72px, 10vw, 120px) 0;
+      padding: clamp(56px, 8vw, 96px) 0;
     }
 
     .pricing-container {
@@ -2929,7 +2955,7 @@
     ========================================== */
     .testimonials-section {
       background: #F8F9FC;
-      padding: clamp(72px, 10vw, 120px) 0;
+      padding: clamp(56px, 8vw, 96px) 0;
       overflow: hidden;
       position: relative;
     }
@@ -3093,7 +3119,7 @@
     ========================================== */
     .getstarted-section {
       background: var(--bg-invert);
-      padding: clamp(80px, 12vw, 130px) 0;
+      padding: clamp(60px, 9vw, 100px) 0;
       overflow: hidden;
     }
 
@@ -3864,64 +3890,28 @@
 
           <!-- Set 1 -->
           <div class="brands-set" aria-hidden="true">
-            <div class="brand-item b-paystack">
-              <!-- Paystack checkmark mark -->
-              <svg class="brand-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              <span class="brand-name">Paystack</span>
-            </div>
-            <div class="brand-item b-flutterwave">
-              <!-- Flutterwave wave mark -->
-              <svg class="brand-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c2-4 4-6 6-6s4 8 6 8 4-6 6-6"/></svg>
-              <span class="brand-name">Flutterwave</span>
-            </div>
-            <div class="brand-item b-mono">
-              <!-- Mono circle mark -->
-              <svg class="brand-mark" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
-              <span class="brand-name">Mono</span>
-            </div>
-            <div class="brand-item b-cowrywise">
-              <!-- Cowrywise coin mark -->
-              <svg class="brand-mark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0"/></svg>
-              <span class="brand-name">Cowrywise</span>
-            </div>
-            <div class="brand-item b-piggyvest">
-              <!-- PiggyVest piggy mark -->
-              <svg class="brand-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 8a7 7 0 1 0-14 0c0 2.5 1.3 4.7 3.3 6L7 17h10l-1.3-3C17.7 12.7 19 10.5 19 8z"/><path d="M10 17v3h4v-3"/><path d="M21 12h-2"/></svg>
-              <span class="brand-name">PiggyVest</span>
-            </div>
-            <div class="brand-item b-andela">
-              <!-- Andela diamond mark -->
-              <svg class="brand-mark" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 22 12 12 22 2 12"/></svg>
-              <span class="brand-name">Andela</span>
-            </div>
+            <div class="brand-item"><img class="brand-logo" src="brand-ao-smith.svg"  alt="A.O. Smith Corporation"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-abbott.svg"    alt="Abbott Laboratories"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-agilent.svg"   alt="Agilent Technologies"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-amazon.svg"    alt="Amazon"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-baxter.svg"    alt="Baxter International"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-sempra.svg"    alt="Sempra"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-dupont.svg"    alt="DuPont"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-ecolab.svg"    alt="Ecolab"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-eli-lilly.svg" alt="Eli Lilly"></div>
           </div>
 
           <!-- Set 2 (identical — for seamless infinity scroll) -->
           <div class="brands-set" aria-hidden="true">
-            <div class="brand-item b-paystack">
-              <svg class="brand-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              <span class="brand-name">Paystack</span>
-            </div>
-            <div class="brand-item b-flutterwave">
-              <svg class="brand-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c2-4 4-6 6-6s4 8 6 8 4-6 6-6"/></svg>
-              <span class="brand-name">Flutterwave</span>
-            </div>
-            <div class="brand-item b-mono">
-              <svg class="brand-mark" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
-              <span class="brand-name">Mono</span>
-            </div>
-            <div class="brand-item b-cowrywise">
-              <svg class="brand-mark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0"/></svg>
-              <span class="brand-name">Cowrywise</span>
-            </div>
-            <div class="brand-item b-piggyvest">
-              <svg class="brand-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 8a7 7 0 1 0-14 0c0 2.5 1.3 4.7 3.3 6L7 17h10l-1.3-3C17.7 12.7 19 10.5 19 8z"/><path d="M10 17v3h4v-3"/><path d="M21 12h-2"/></svg>
-              <span class="brand-name">PiggyVest</span>
-            </div>
-            <div class="brand-item b-andela">
-              <svg class="brand-mark" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 22 12 12 22 2 12"/></svg>
-              <span class="brand-name">Andela</span>
-            </div>
+            <div class="brand-item"><img class="brand-logo" src="brand-ao-smith.svg"  alt="A.O. Smith Corporation"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-abbott.svg"    alt="Abbott Laboratories"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-agilent.svg"   alt="Agilent Technologies"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-amazon.svg"    alt="Amazon"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-baxter.svg"    alt="Baxter International"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-sempra.svg"    alt="Sempra"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-dupont.svg"    alt="DuPont"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-ecolab.svg"    alt="Ecolab"></div>
+            <div class="brand-item"><img class="brand-logo" src="brand-eli-lilly.svg" alt="Eli Lilly"></div>
           </div>
 
         </div>
@@ -3933,7 +3923,7 @@
     <section class="problem-section" id="problem" aria-labelledby="problem-heading">
       <div class="problem-container">
 
-        <!-- LEFT COLUMN -->
+        <!-- LEFT: tag + heading + subtitle -->
         <div class="problem-left">
 
           <span class="problem-tag prob-fade-up prob-d1">
@@ -3943,61 +3933,28 @@
 
           <h2 class="problem-h2 prob-fade-up prob-d2" id="problem-heading">
             Passwords Are<br>
-            <span class="problem-accent">Broken.</span><br>
-            And You&rsquo;re Exposed.
+            <span class="problem-accent">Broken.</span> And You&rsquo;re<br>
+            Exposed.
           </h2>
 
           <p class="problem-body-text prob-fade-up prob-d3">
-            The average person manages 100+ accounts — and most share the same weak password across all of them.
-            One breach ripples everywhere. Email. Banking. Work. Snaarplock exists because the current system is silently failing you.
+            Most people reuse the same weak password across dozens of accounts. One breach exposes everything — email, banking, work.
           </p>
 
+        </div>
+
+        <!-- RIGHT: CTAs aligned with title/subtitle -->
+        <div class="problem-ctas-wrap">
           <div class="problem-ctas prob-fade-up prob-d4">
             <a href="#" class="btn-prob-primary">
               Get protected now
             </a>
-            <a href="#" class="btn-prob-secondary">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-              See how it happens
-            </a>
           </div>
-
         </div>
 
-        <!-- RIGHT COLUMN -->
-        <div class="problem-right prob-scale-in prob-d2">
-          <div class="problem-card">
-
-            <!-- Password audit image -->
-            <img src="Copilot_20260607_215153.png" alt="Password audit showing multiple breached and weak accounts" class="pcard-ui" />
-
-            <!-- Floating chip: top right -->
-            <div class="problem-chip problem-chip-tr prob-chip-float-1" aria-hidden="true">
-              <div class="pchip-inner">
-                <div class="pchip-iconbox pchip-iconbox-red">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                </div>
-                <div>
-                  <span class="pchip-val">3 Breaches</span>
-                  <span class="pchip-lbl">Detected in your vault</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Floating chip: bottom left -->
-            <div class="problem-chip problem-chip-bl prob-chip-float-2" aria-hidden="true">
-              <div class="pchip-inner">
-                <div class="pchip-iconbox pchip-iconbox-purple">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7342E2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <div>
-                  <span class="pchip-val">$4.45M</span>
-                  <span class="pchip-lbl">Avg. breach cost</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
+        <!-- FULL-WIDTH IMAGE -->
+        <div class="problem-image-wrap prob-scale-in prob-d2">
+          <img src="Copilot_20260607_215153.png" alt="Password audit showing multiple breached and weak accounts" />
         </div>
 
         <!-- Stats bar — spans full width below both columns -->
@@ -4519,7 +4476,7 @@
 
               <!-- Card 0: End-to-End Encryption -->
               <div class="seccar-card" data-seccar-card="0">
-                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200" alt="End-to-End Encryption" class="seccar-card-img" loading="lazy">
+                <img src="End%20to%20end%20encryption.jpg" alt="End-to-End Encryption" class="seccar-card-img" loading="lazy">
                 <div class="seccar-card-overlay">
                   <span class="seccar-card-tag">1 · End-to-End Encryption</span>
                   <p class="seccar-card-desc">Your vault is encrypted with AES-256 before it ever leaves your device. Only you hold the key — we never see your data, period.</p>
@@ -4532,7 +4489,7 @@
 
               <!-- Card 1: Zero-Knowledge Architecture -->
               <div class="seccar-card" data-seccar-card="1">
-                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200" alt="Zero-Knowledge Architecture" class="seccar-card-img" loading="lazy">
+                <img src="Zero-Knowledge%20Architecture.png" alt="Zero-Knowledge Architecture" class="seccar-card-img" loading="lazy">
                 <div class="seccar-card-overlay">
                   <span class="seccar-card-tag">2 · Zero-Knowledge Architecture</span>
                   <p class="seccar-card-desc">Snaarplock cannot read, access, or share your passwords — ever. Your master password is hashed locally and never transmitted.</p>
@@ -4545,7 +4502,7 @@
 
               <!-- Card 2: Two-Factor Authentication -->
               <div class="seccar-card" data-seccar-card="2">
-                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200" alt="Two-Factor Authentication" class="seccar-card-img" loading="lazy">
+                <img src="Two-Factor%20Authentication.png" alt="Two-Factor Authentication" class="seccar-card-img" loading="lazy">
                 <div class="seccar-card-overlay">
                   <span class="seccar-card-tag">3 · Two-Factor Authentication</span>
                   <p class="seccar-card-desc">TOTP apps, hardware keys, and passkeys all supported. A stolen master password still can't open your vault without the second factor.</p>
@@ -4558,7 +4515,7 @@
 
               <!-- Card 3: Breach Monitoring -->
               <div class="seccar-card" data-seccar-card="3">
-                <img src="https://images.unsplash.com/photo-1551288049-bbda38a10ad5?q=80&w=1200" alt="Breach Monitoring" class="seccar-card-img" loading="lazy">
+                <img src="Breach%20monitoring.jpg" alt="Breach Monitoring" class="seccar-card-img" loading="lazy">
                 <div class="seccar-card-overlay">
                   <span class="seccar-card-tag">4 · Breach Monitoring</span>
                   <p class="seccar-card-desc">We continuously scan billions of leaked credentials and alert you the moment any of your accounts appear in a known data breach.</p>
@@ -4571,7 +4528,7 @@
 
               <!-- Card 4: Biometric Unlock -->
               <div class="seccar-card" data-seccar-card="4">
-                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200" alt="Biometric Unlock" class="seccar-card-img" loading="lazy">
+                <img src="Copilot_20260607_215153.png" alt="Biometric Unlock" class="seccar-card-img" loading="lazy">
                 <div class="seccar-card-overlay">
                   <span class="seccar-card-tag">5 · Biometric Unlock</span>
                   <p class="seccar-card-desc">Unlock with Face ID, Touch ID, or Windows Hello — instant access on every trusted device without typing your master password again.</p>
