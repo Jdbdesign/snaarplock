@@ -3141,7 +3141,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 460px;
+      min-height: 520px;
     }
 
     /* Back phone — tilted left */
@@ -3220,143 +3220,14 @@
       color: rgba(255,255,255,0.75);
     }
 
-    /* Front phone — straight */
-    .gs-phone-front {
+    /* Front: mobile mockup image */
+    .gs-phone-img {
       position: relative;
       z-index: 2;
-      width: 214px;
-      margin-left: 60px;
-      background: #fff;
-      border-radius: 36px;
-      box-shadow: 0 36px 90px rgba(0,0,0,0.55), 0 6px 18px rgba(0,0,0,0.22);
-      overflow: hidden;
-    }
-
-    .gs-phone-front-notch {
-      height: 28px;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .gs-phone-front-notch::after {
-      content: '';
-      width: 68px;
-      height: 14px;
-      background: #0D1333;
-      border-radius: 0 0 12px 12px;
-    }
-
-    .gs-phone-front-screen {
-      background: #F4F5F9;
-      padding: 12px 10px 20px;
-    }
-
-    /* Screen top bar */
-    .gs-screen-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2px;
-      margin-bottom: 12px;
-    }
-
-    .gs-screen-title {
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 700;
-      color: #192837;
-    }
-
-    .gs-screen-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 6px;
-      background: var(--color-accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Entry rows */
-    .gs-entry {
-      background: #fff;
-      border-radius: 10px;
-      padding: 8px 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
-    .gs-entry:last-child { margin-bottom: 0; }
-
-    .gs-entry-icon {
-      width: 26px;
-      height: 26px;
-      border-radius: 7px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-body);
-      font-size: 9.5px;
-      font-weight: 800;
-    }
-
-    .gs-entry-info { flex: 1; min-width: 0; }
-
-    .gs-entry-site {
-      font-family: var(--font-body);
-      font-size: 10.5px;
-      font-weight: 700;
-      color: #192837;
+      height: clamp(420px, 44vw, 560px);
+      width: auto;
+      margin-left: 50px;
       display: block;
-    }
-
-    .gs-entry-pw {
-      font-family: monospace;
-      font-size: 9.5px;
-      color: #B0AECC;
-      letter-spacing: 1.5px;
-      display: block;
-    }
-
-    .gs-entry-fill {
-      font-family: var(--font-body);
-      font-size: 8.5px;
-      font-weight: 700;
-      color: var(--color-accent);
-      border: 1.5px solid rgba(115,66,226,0.3);
-      border-radius: 100px;
-      padding: 2px 7px;
-      flex-shrink: 0;
-    }
-
-    /* Security badge at bottom of screen */
-    .gs-screen-badge {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: #ECFDF5;
-      border-radius: 8px;
-      padding: 6px 8px;
-      margin-top: 8px;
-    }
-
-    .gs-screen-badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #12B76A;
-      flex-shrink: 0;
-    }
-
-    .gs-screen-badge-text {
-      font-family: var(--font-body);
-      font-size: 9px;
-      font-weight: 600;
-      color: #027A48;
     }
 
     /* ─── Right: content ─── */
@@ -3528,8 +3399,12 @@
         text-align: center;
       }
       .gs-mockup-wrap {
-        min-height: 380px;
+        min-height: 420px;
         order: -1;
+      }
+      .gs-phone-img {
+        height: 420px;
+        margin-left: 50px;
       }
       .gs-p { margin-left: auto; margin-right: auto; }
       .gs-ctas { justify-content: center; }
@@ -3539,7 +3414,7 @@
     @media (max-width: 480px) {
       .gs-ctas { flex-direction: column; align-items: stretch; }
       .btn-gs-primary, .btn-gs-secondary { justify-content: center; }
-      .gs-phone-front { margin-left: 40px; }
+      .gs-phone-img { height: 360px; margin-left: 36px; }
     }
 
     /* ==========================================
@@ -4918,66 +4793,8 @@
             </div>
           </div>
 
-          <!-- Front phone (straight, white) -->
-          <div class="gs-phone-front">
-            <div class="gs-phone-front-notch"></div>
-            <div class="gs-phone-front-screen">
-
-              <div class="gs-screen-bar">
-                <span class="gs-screen-title">My Vault</span>
-                <div class="gs-screen-icon">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                </div>
-              </div>
-
-              <!-- Entry 1 -->
-              <div class="gs-entry">
-                <div class="gs-entry-icon" style="background:#E8F4FF; color:#1A73E8;">G</div>
-                <div class="gs-entry-info">
-                  <span class="gs-entry-site">Google</span>
-                  <span class="gs-entry-pw">••••••••••</span>
-                </div>
-                <span class="gs-entry-fill">Fill</span>
-              </div>
-
-              <!-- Entry 2 -->
-              <div class="gs-entry">
-                <div class="gs-entry-icon" style="background:#FFF0F0; color:#E8222A;">N</div>
-                <div class="gs-entry-info">
-                  <span class="gs-entry-site">Netflix</span>
-                  <span class="gs-entry-pw">••••••••••</span>
-                </div>
-                <span class="gs-entry-fill">Fill</span>
-              </div>
-
-              <!-- Entry 3 -->
-              <div class="gs-entry">
-                <div class="gs-entry-icon" style="background:#F0EEFF; color:#7342E2;">S</div>
-                <div class="gs-entry-info">
-                  <span class="gs-entry-site">Slack</span>
-                  <span class="gs-entry-pw">••••••••••</span>
-                </div>
-                <span class="gs-entry-fill">Fill</span>
-              </div>
-
-              <!-- Entry 4 -->
-              <div class="gs-entry">
-                <div class="gs-entry-icon" style="background:#E8F5E9; color:#1A7A3A;">D</div>
-                <div class="gs-entry-info">
-                  <span class="gs-entry-site">Dropbox</span>
-                  <span class="gs-entry-pw">••••••••••</span>
-                </div>
-                <span class="gs-entry-fill">Fill</span>
-              </div>
-
-              <!-- Security badge -->
-              <div class="gs-screen-badge">
-                <span class="gs-screen-badge-dot"></span>
-                <span class="gs-screen-badge-text">Vault is locked &amp; encrypted</span>
-              </div>
-
-            </div>
-          </div>
+          <!-- Mobile mockup image -->
+          <img src="Mobileee.png" alt="Snaarplock mobile app mockup" class="gs-phone-img">
 
         </div>
 
